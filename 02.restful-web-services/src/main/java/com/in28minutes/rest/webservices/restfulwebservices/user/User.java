@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,7 +26,7 @@ public class User {
 	private Integer id;
 	
 	@Size(min=2, message = "Name should have atleast 2 characters")
-	//@JsonProperty("user_name")
+	@JsonProperty("user_name") // change name field to user_name
 	private String name;
 	
 	@Past(message = "Birth Date should be in the past")
