@@ -35,8 +35,8 @@ public class FilteringController {
 
 	@GetMapping("/filtering-list") //field2, field3
 	public MappingJacksonValue filteringList() {
-		List<SomeBean> list = Arrays.asList(new SomeBean("value1","value2", "value3"),
-				new SomeBean("value4","value5", "value6"));
+		List<SomeBean1> list = Arrays.asList(new SomeBean1("value1","value2", "value3"),
+				new SomeBean1("value4","value5", "value6"));
 		MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(list);
 		
 		SimpleBeanPropertyFilter filter = 

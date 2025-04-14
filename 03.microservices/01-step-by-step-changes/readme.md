@@ -1,9 +1,9 @@
-# Debugging Guide - Microservices - V2
+#Debugging Guide - Microservices - V2
 
 - [Spring Boot & Spring Cloud Versions](#spring-boot--spring-cloud-versions)
 - [URLs](#urls)
 - [Debugging Guides](#debugging-guides)
-	- [Spring Cloud Config Server - Steps 01 to 08](#spring-cloud-config-server---steps-01-to-08)
+	- [Spring Cloud Config Server - Steps 01 to 08](#step-01)
 		- [Step 01](#step-01)
 		- [Step 02](#step-02)
 		- [Step 03](#step-03)
@@ -12,7 +12,7 @@
 		- [Step 06](#step-06)
 		- [Step 07](#step-07)
 		- [Step 08](#step-08)
-	- [Setting up Currency Conversion and Currency Exchange Microservices]
+	- [Setting up Currency Conversion and Currency Exchange Microservices](#Setting up Currency Conversion and Currency Exchange Microservices)
 		- [Step 10](#step-10)
 		- [Step 11](#step-11)
 		- [Step 12](#step-12)
@@ -37,7 +37,7 @@
 	- [Docker Section - Connect Microservices with Zipkin](#docker-section---connect-microservices-with-zipkin)
 		- [Docker Step 12](#docker-step-12)
 
-## Spring Boot & Spring Cloud Versions
+##Spring Boot & Spring Cloud Versions
 
 ```xml
 	<parent>
@@ -54,27 +54,27 @@
 ```
 
 
-## URLs
+##URLs
 
-### Limits Service
+###Limits Service
 - http://localhost:8080/limits
 
-### Cloud Config Server
+###Cloud Config Server
 - http://localhost:8888/limits-service/default
 - http://localhost:8888/limits-service/qa
 - http://localhost:8888/limits-service/dev
 
-### Currency Exchange Service
+###Currency Exchange Service
 - http://localhost:8000/currency-exchange/from/USD/to/INR
 
-### Currency Conversion Service
+###Currency Conversion Service
 - http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
 - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
-### Eureka
+###Eureka
 - http://localhost:8761/
 
-### Spring Cloud Api Gateway
+###Spring Cloud Api Gateway
 
 Initial
 - http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
@@ -93,10 +93,10 @@ Final
 - http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
 
-## Debugging Guides
+##Debugging Guides
 
 ---
-### Spring Cloud Config Server - Steps 01 to 08
+###Spring Cloud Config Server - Steps 01 to 08
 ---
 
 (0) Do you get this error 'org.springframework.cloud.config.server.environment.NoSuchLabelException: No such label: master`?  Add this in application.properties: 'spring.cloud.config.server.git.default-label=main`
@@ -153,7 +153,7 @@ If you still have a problem, post a question including all the details:
 (7) All code for files shown below from Step 01 to Step 08.
 
 ---
-### Step 01
+##step-01
 ---
 
 Step 01 - Setting up Limits Microservice
@@ -175,12 +175,12 @@ spring.config.import=optional:configserver:http://localhost:8888
 ```
 
 ---
-### Step 02
+###Step 02
 ---
 
 Step 02 - Creating a hard coded limits service
 
-#### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/bean/Limits.java New
+####/limits-service/src/main/java/com/in28minutes/microservices/limitsservice/bean/Limits.java New
 
 ```java
 package com.in28minutes.microservices.limitsservice.bean;
@@ -218,7 +218,7 @@ public class Limits {
 }
 ```
 
-#### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/controller/LimitsController.java New
+####/limits-service/src/main/java/com/in28minutes/microservices/limitsservice/controller/LimitsController.java New
 
 ```java
 package com.in28minutes.microservices.limitsservice.controller;
@@ -239,12 +239,12 @@ public class LimitsController {
 ```
 
 ---
-### Step 03
+###Step 03
 ---
 
 Step 03 - Enhance limits service to pick up configuration from application properties
 
-#### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/configuration/Configuration.java New
+####/limits-service/src/main/java/com/in28minutes/microservices/limitsservice/configuration/Configuration.java New
 
 ```java
 package com.in28minutes.microservices.limitsservice.configuration;
@@ -277,7 +277,7 @@ public class Configuration {
 }
 ```
 
-#### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/controller/LimitsController.java Modified
+####/limits-service/src/main/java/com/in28minutes/microservices/limitsservice/controller/LimitsController.java Modified
 
 ```java
 package com.in28minutes.microservices.limitsservice.controller;
@@ -303,7 +303,7 @@ public class LimitsController {
 	}
 }
 ```
-#### /limits-service/src/main/resources/application.properties Modified
+####/limits-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
 limits-service.minimum=3
@@ -311,7 +311,7 @@ limits-service.maximum=997
 ```
 
 ---
-### Step 04
+###Step 04
 ---
 
 Step 04 - Setting up Spring Cloud Config Server
@@ -323,7 +323,7 @@ On Spring Initializr, choose:
 	- DevTools
 	- Config Server
 
-#### /spring-cloud-config-server/src/main/resources/application.properties Modified
+####/spring-cloud-config-server/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=spring-cloud-config-server
@@ -331,7 +331,7 @@ server.port=8888
 ```
 
 ---
-### Step 05
+###Step 05
 ---
 
 Step 05 - Installing Git and Creating Local Git Repository
@@ -342,7 +342,7 @@ git add *
 git commit -m "First commit"
 ```
 
-#### /git-localconfig-repo/limits-service.properties New
+####/git-localconfig-repo/limits-service.properties New
 
 ```properties
 limits-service.minimum=4
@@ -350,12 +350,12 @@ limits-service.maximum=996
 ```
 
 ---
-### Step 06
+###Step 06
 ---
 
 Step 06 - Connect Spring Cloud Config Server to Local Git Repository
 
-#### /spring-cloud-config-server/src/main/java/com/in28minutes/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java Modified
+####/spring-cloud-config-server/src/main/java/com/in28minutes/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java Modified
 
 New Lines
 ```java
@@ -364,7 +364,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableConfigServer
 ```
 
-#### /spring-cloud-config-server/src/main/resources/application.properties Modified
+####/spring-cloud-config-server/src/main/resources/application.properties Modified
 
 New Lines
 ```properties
@@ -376,7 +376,7 @@ spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-microservices-
 ```
 
 ---
-### Step 07
+###Step07
 ---
 
 Step 07 - Connect Limits Service to Spring Cloud Config Server
@@ -385,7 +385,7 @@ Step 07 - Connect Limits Service to Spring Cloud Config Server
 URLS
 - http://localhost:8888/limits-service/default
 
-#### /limits-service/src/main/resources/application.properties Modified
+####/limits-service/src/main/resources/application.properties Modified
 
 New Lines
 ```properties
@@ -398,7 +398,7 @@ limits-service.maximum=997
 ```
 
 ---
-### Step 08
+###Step 08
 ---
 
 Step 08 - Configuring Profiles for Limits Service
@@ -407,7 +407,7 @@ Step 08 - Configuring Profiles for Limits Service
 - http://localhost:8888/limits-service/qa
 - http://localhost:8888/limits-service/dev
 
-#### /limits-service/src/main/resources/application.properties Modified
+####/limits-service/src/main/resources/application.properties Modified
 
 New Lines
 
@@ -424,35 +424,35 @@ limits-service.maximum=997
 
 ```
 
-#### /git-localconfig-repo/limits-service-dev.properties New
+####/git-localconfig-repo/limits-service-dev.properties New
 
 ```properties
 limits-service.minimum=4
 limits-service.maximum=996
 ```
 
-#### /git-localconfig-repo/limits-service-qa.properties New
+####/git-localconfig-repo/limits-service-qa.properties New
 
 ```properties
 limits-service.minimum=6
 limits-service.maximum=993
 ```
 
-#### /git-localconfig-repo/microservice-x-dev.properties New
+####/git-localconfig-repo/microservice-x-dev.properties New
 
 ```properties
 limits-service.minimum=4
 limits-service.maximum=996
 ```
 
-#### /git-localconfig-repo/microservice-x.properties New
+####/git-localconfig-repo/microservice-x.properties New
 
 ```properties
 limits-service.minimum=4
 limits-service.maximum=996
 ```
 
-#### /git-localconfig-repo/microservice-y.properties New
+####/git-localconfig-repo/microservice-y.properties New
 
 ```properties
 limits-service.minimum=4
@@ -461,7 +461,8 @@ limits-service.maximum=996
 
 
 ---
-### Step 10
+
+###Step 10
 ---
 
 Step 10 - Setting up Currency Exchange Microservice
@@ -476,7 +477,7 @@ On Spring Initializr, choose:
 	- Config Client
 
 
-#### /currency-exchange-service/src/main/resources/application.properties Modified
+####/currency-exchange-service/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=currency-exchange
@@ -484,7 +485,7 @@ server.port=8000
 ```
 - If you are Spring Boot >=2.5.0, You would need to configure this in application.properties `spring.config.import=optional:configserver:http://localhost:8888` 
 ---
-### Step 11
+###Step 11
 ---
 
 Step 11 - Create a simple hard coded currency exchange service
@@ -504,7 +505,7 @@ URL
 
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java New
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java New
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -569,7 +570,7 @@ public class CurrencyExchange {
 }
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java New
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java New
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -597,7 +598,7 @@ public class CurrencyExchangeController {
 
 
 ---
-### Step 12
+###Step 12
 ---
 
 Step 12 - Setting up Dynamic Port in the the Response
@@ -605,7 +606,7 @@ Step 12 - Setting up Dynamic Port in the the Response
 
 - VM Arguments : -Dserver.port=8001 to launch on 8001
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java New
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java New
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -639,7 +640,7 @@ public class CurrencyExchangeController {
 }
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java Modified 
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java Modified 
 
 Adding `private String environment` and getters and setters
 
@@ -718,7 +719,7 @@ public class CurrencyExchange {
 ```
 
 ---
-### Step 13
+###Step 13
 ---
 
 Step 13 - Configure JPA and Initialized Data
@@ -730,7 +731,7 @@ Step 13 - Configure JPA and Initialized Data
 
 
 
-#### /currency-exchange-service/pom.xml Modified
+####/currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
 		<dependency>
@@ -743,7 +744,7 @@ New Lines
 		</dependency>
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java Modified
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchange.java Modified
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -768,7 +769,7 @@ public class CurrencyExchange {
 
 ```
 
-#### /currency-exchange-service/src/main/resources/application.properties Modified
+####/currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
 spring.jpa.show-sql=true
@@ -777,10 +778,10 @@ spring.h2.console.enabled=true
 
 spring.application.name=currency-exchange
 server.port=8000
-spring.jpa.defer-datasource-initialization=true # For >2.5.0
+spring.jpa.defer-datasource-initialization=true #For >2.5.0
 ```
 
-#### /currency-exchange-service/src/main/resources/data.sql New
+####/currency-exchange-service/src/main/resources/data.sql New
 
 ```sql
 insert into currency_exchange
@@ -795,12 +796,12 @@ values(10003,'AUD','INR',25,'');
 ```
 
 ---
-### Step 14
+###Step 14
 ---
 
 Step 14 - Create a JPA Repository
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java Modified
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java Modified
 
 
 ```java
@@ -846,7 +847,7 @@ public class CurrencyExchangeController {
 }
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeRepository.java New
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeRepository.java New
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -860,7 +861,7 @@ public interface CurrencyExchangeRepository
 ```
 
 ---
-### Step 15
+###Step 15
 ---
 
 Step 15 - Setting up Currency Conversion Microservice
@@ -876,7 +877,7 @@ On Spring Initializr, choose:
 
 Create Currency Conversion Microservice using Spring Initializr.
 
-#### /currency-conversion-service/src/main/resources/application.properties Modified
+####/currency-conversion-service/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=currency-conversion
@@ -884,7 +885,7 @@ server.port=8100
 ```
 
 ---
-### Step 16
+###Step 16
 ---
 
 Step 16 - Creating a service for currency conversion
@@ -905,7 +906,7 @@ URL
 }
 ```
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java New
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java New
 
 ```java
 package com.in28minutes.microservices.currencyconversionservice;
@@ -940,7 +941,7 @@ public class CurrencyConversionController {
 ```
 
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversion.java New
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversion.java New
 
 ```java
 package com.in28minutes.microservices.currencyconversionservice;
@@ -1035,12 +1036,12 @@ public class CurrencyConversion {
 ```
 
 ---
-### Step 17
+###Step 17
 ---
 
 Step 17 - Invoking Currency Exchange Microservice from Currency Conversion Microservice
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
 
 ```java
 package com.in28minutes.microservices.currencyconversionservice;
@@ -1088,7 +1089,7 @@ public class CurrencyConversionController {
 
 
 ---
-### Debugging problems with Feign
+###Debugging problems with Feign
 ---
 
 (1) Ensure that you have the annotation @EnableFeignClients with right packages on the class public class CurrencyConversionServiceApplication @EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
@@ -1127,7 +1128,7 @@ If you still have a problem, post a question including all the details:
 (6) Post Code for all the components listed below in Step 18 and Step 19.
 
 ---
-### Step 18
+###Step 18
 ---
 
 Step 18 - Using Feign REST Client for Service Invocation
@@ -1136,7 +1137,7 @@ URL
 - http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
 - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
-#### /currency-conversion-service/pom.xml Modified
+####/currency-conversion-service/pom.xml Modified
 New Lines
 ```xml
 		<dependency>
@@ -1146,7 +1147,7 @@ New Lines
 
 ```
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyExchangeProxy.java New
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyExchangeProxy.java New
 
 ```java
 package com.in28minutes.microservices.currencyconversionservice;
@@ -1167,7 +1168,7 @@ public interface CurrencyExchangeProxy {
 }
 ```
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
 
 ```java
 @RestController
@@ -1197,7 +1198,7 @@ public class CurrencyConversionController {
 }
 ```
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionServiceApplication.java Modified
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionServiceApplication.java Modified
 
 ```java
 @SpringBootApplication
@@ -1205,7 +1206,7 @@ public class CurrencyConversionController {
 public class CurrencyConversionServiceApplication {
 ```
 ---
-### Eureka - Step 19 to 21
+###Eureka - Step 19 to 21
 ---
 
 If you see an error of this kind - Wait for 5 minutes and give it a try again!
@@ -1270,7 +1271,7 @@ If you still have a problem, post a question including all the details:
 (6) Code for all the components listed below (Step 19 to Step 21):
 
 ---
-### Step 19
+###Step 19
 ---
 
 On Spring Initializr, choose:
@@ -1288,7 +1289,7 @@ Step 19 - Understand Naming Server and Setting up Eureka Naming Server
 Eureka
 - http://localhost:8761/
 
-#### /naming-server/src/main/java/com/in28minutes/microservices/namingserver/NamingServerApplication.java Modified
+####/naming-server/src/main/java/com/in28minutes/microservices/namingserver/NamingServerApplication.java Modified
 
 - Add @EnableEurekaServer
 
@@ -1311,7 +1312,7 @@ public class NamingServerApplication {
 }
 ```
 
-#### /naming-server/src/main/resources/application.properties Modified
+####/naming-server/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=naming-server
@@ -1322,19 +1323,19 @@ eureka.client.fetch-registry=false
 ```
 
 ---
-### Step 20
+###Step 20
 ---
 
 Step 20 - Connect Currency Conversion Microservice & Currency Exchange Microservice to Eureka
 
 
-#### /currency-conversion-service/src/main/resources/application.properties Modified
+####/currency-conversion-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
-#### /currency-conversion-service/pom.xml Modified
+####/currency-conversion-service/pom.xml Modified
 New Lines
 ```xml
 		<dependency>
@@ -1344,7 +1345,7 @@ New Lines
 
 ```
 
-#### /currency-exchange-service/pom.xml Modified
+####/currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
 		<dependency>
@@ -1353,19 +1354,19 @@ New Lines
 		</dependency>
 
 ```
-#### /currency-exchange-service/src/main/resources/application.properties Modified
+####/currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
 ---
-### Step 22
+###Step 22
 ---
 
 Step 22 - Load Balancing with Eureka, Feign & Spring Cloud LoadBalancer
 
-#### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyExchangeProxy.java Modified
+####/currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyExchangeProxy.java Modified
 
 ```java
 
@@ -1378,7 +1379,7 @@ public interface CurrencyExchangeProxy {
 ```
 
 ---
-### Spring Cloud API Gateway - Step 22 to Step 25
+###Spring Cloud API Gateway - Step 22 to Step 25
 ---
 
 (1) Make sure you are using the right URLs?
@@ -1488,7 +1489,7 @@ If you still have a problem, post a question including all the details:
 
 
 ---
-### Step 22
+###Step 22
 ---
 
 Step 22 - Setting up Spring Cloud API Gateway
@@ -1502,7 +1503,7 @@ On Spring Initializr, choose:
 	- Eureka Discovery Client
 	- IMPORTANT! - Choose Reactive Gateway (NOT Just Gateway )
 
-#### /api-gateway/src/main/resources/application.properties Modified
+####/api-gateway/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=api-gateway
@@ -1512,7 +1513,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
 ---
-### Step 23
+###Step 23
 ---
 
 Step 23 - Enabling Discovery Locator with Eureka for Spring Cloud Gateway
@@ -1528,7 +1529,7 @@ Intermediate
 - http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
 
 
-#### /api-gateway/src/main/resources/application.properties Modified
+####/api-gateway/src/main/resources/application.properties Modified
 
 ```properties
 spring.application.name=api-gateway
@@ -1541,7 +1542,7 @@ spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ```
 
 ---
-### Step 24
+###Step 24
 ---
 
 Step 24 - Exploring Routes with Spring Cloud Gateway
@@ -1553,7 +1554,7 @@ Final
 - http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
 
-#### /api-gateway/src/main/resources/application.properties Modified
+####/api-gateway/src/main/resources/application.properties Modified
 Commented
 ```
 #spring.cloud.gateway.discovery.locator.enabled=true
@@ -1571,7 +1572,7 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 #spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ```
 
-#### /api-gateway/src/main/java/com/in28minutes/microservices/apigateway/ApiGatewayConfiguration.java New
+####/api-gateway/src/main/java/com/in28minutes/microservices/apigateway/ApiGatewayConfiguration.java New
 
 ```java
 package com.in28minutes.microservices.apigateway;
@@ -1611,12 +1612,12 @@ public class ApiGatewayConfiguration {
 ```
 
 ---
-### Step 25
+###Step 25
 ---
 
 Step 25 - Implementing Spring Cloud Gateway Logging Filter
 
-#### /api-gateway/src/main/java/com/in28minutes/microservices/apigateway/LoggingFilter.java New
+####/api-gateway/src/main/java/com/in28minutes/microservices/apigateway/LoggingFilter.java New
 
 ```java
 package com.in28minutes.microservices.apigateway;
@@ -1647,7 +1648,7 @@ public class LoggingFilter implements GlobalFilter {
 ```
 
 ---
-### Circuit Breaker - 26 to 29
+###Circuit Breaker - 26 to 29
 ---
 
 (0) Can you use maxAttempts instead of maxRetryAttempts?
@@ -1672,7 +1673,7 @@ wait for 5/4/3/2/1 seconds, press a key to continue....
 Reference: https://www.shellhacks.com/windows-watch-command-equivalent-cmd-powershell/
 
 ---
-### Step 26 to 29
+###Step 26 to 29
 ---
 
 Changes for:
@@ -1682,7 +1683,7 @@ Changes for:
 -  Step 29 - Exploring Rate Limiting and BulkHead Features of Resilience4j
 
 
-#### /currency-exchange-service/pom.xml Modified
+####/currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
 		<dependency>
@@ -1696,7 +1697,7 @@ New Lines
 		</dependency>
 ```
 
-#### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CircuitBreakerController.java New
+####/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CircuitBreakerController.java New
 
 ```java
 package com.in28minutes.microservices.currencyexchangeservice;
@@ -1737,7 +1738,7 @@ public class CircuitBreakerController {
 }
 ```
 
-#### /currency-exchange-service/src/main/resources/application.properties Modified
+####/currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
 resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
