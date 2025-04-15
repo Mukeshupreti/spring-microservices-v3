@@ -32,7 +32,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -45,7 +48,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+    <!--Here you define all the dependecy version once you refer in dependency management section it will be include
+	in your project-->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -66,7 +70,8 @@
 			</plugin>
 		</plugins>
 	</build>
-
+  <!--below  define repository if you dont find dependency in repo mentioned in setting.xml
+	maven will look dependeny in below repository mentioned-->
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
