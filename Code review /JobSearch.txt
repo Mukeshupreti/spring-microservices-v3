@@ -1,0 +1,511 @@
+ 1&1 https://www.mail-and-media.com/en/job/en-177.html
+ Spring Boot based Microservices and deploy them on our in-house Kubernetes clusters.
+
+ You’re keen to learn new things and you can develop outstanding new features with Java and Spring Boot? You are interested to become part of an agile team working in mail systems? Your passion is software development and your code is high quality? Your work attitude is hands-on and you’re a strong team player? You see yourself described in the points below? Then we are looking forward to your application.
+
+ You have sound knowledge in object oriented programming with Java and web technologies such as JSON or RESTFul HTTP are no foreign concepts for you. Ideally, you've worked with Spring Boot, NOSQL and SQL databases, Microservices, containerised applications and Kubernetes before.
+
+ You have experience with Linux as a development- and server environment in high load scenarios as well as distributed systems.
+ You are familiar with automated software quality assurance (Unit Testing, Performance Tests, Acceptance Tests) and agile development in a continuous delivery environment.
+
+ You are communicative, open to new ideas and enjoy working in an agile team.
+ Good English skills are necessary, German is a plus while not necessary.
+
+
+ Munich (Best Option 🚀)
+✅ Tech Hub: Many international companies & startups
+✅ High Salaries: IT salaries are among the highest in Germany
+✅ English-Friendly: Many companies hire English-speaking developers
+🚆 Commute: ~30-40 minutes by train (Augsburg ↔ Munich Hbf)
+🏢 Top Companies:
+
+BMW, Allianz, Siemens, Celonis, Personio, Capgemini, Infineon
+🔹 Best for: Stable, high-paying jobs with good career growth
+
+2. Augsburg (Local Jobs, but Limited Options)
+✅ Lower Cost of Living than Munich
+✅ Less Competition for IT jobs
+❌ Fewer English-speaking roles
+🏢 Companies in Augsburg:
+
+MAN Energy Solutions
+KUKA Robotics
+baramundi software
+ITK Engineering
+🔹 Best for: Work-life balance & short commute
+
+3. Stuttgart (~2 Hours, Only for Remote/Hybrid Jobs)
+✅ Automotive & Engineering IT Jobs (Mercedes-Benz, Bosch)
+❌ Longer commute (not practical for daily travel)
+🏢 Major Companies:
+
+Daimler, Porsche, Bosch, Vector Informatik
+🔹 Best for: High-paying remote/hybrid roles
+
+4. Ulm (Smaller IT Market, ~1 Hour by Train)
+✅ Manufacturing & AI/Automation roles
+🏢 Companies:
+
+Nokia, Beurer, Continental
+🔹 Best for: Remote jobs + occasional office visits
+
+🏆 Conclusion: Focus on Munich
+For stable IT jobs: Munich is the best target 🎯
+For work-life balance: Look for local Augsburg jobs
+For remote options: Check Stuttgart/Ulm
+Would you like me to help with a list of Munich companies hiring Senior Java developers? 🚀
+
+
+
+https://chatgpt.com/share/67e53afc-a020-8011-b990-3454edf1dca3
+Filter out job requirement and how to prepare for Your Mission
+As a Senior Software Engineer in the Foundations Team, you will play a crucial role in building and maintaining the foundational services that power Sparetech's web applications. You will work in a cross-functional team (Backend / Frontend) and ensure the platform remains scalable, high-performing, and maintainable. Your work will enable product teams to move fast while maintaining high engineering standards.
+
+We offer you the opportunity to
+Be a central pillar for the success of SPARETECH in the early stages of our startup by contributing your own ideas and participating in decisions.
+Be a key contributor to foundational platform components and systems, enabling other teams to build on top of them efficiently (User management, Authentication, Data Model, etc.).
+Develop and maintain external interfaces to facilitate seamless integrations with customers.
+Continuously develop your skills through hands-on learning and access to the latest technologies.
+Develop the ability to work in a fast-paced, collaborative environment with a focus on delivering high-quality solutions on time.
+Solve complex technical challenges related to scalability, performance, and security.
+Take ownership and solve complex product problems and collaborate with a cross-functional team of product managers, designers, and fellow engineers.
+Become a part of our team if you
+
+Have 5+ years of experience building software with JVM-based languages (Java, Kotlin, Scala).
+Have experience designing robust, scalable, and maintainable backend systems.
+Have excellent communication skills that enable you to efficiently steer technological choices within the domains owned by your team.
+Are comfortable working across the stack (backend & frontend) or collaborating closely with frontend engineers.
+Are proficient in relational and non-relational databases and optimizing database performance.
+
+Value collaboration, clean code, and well-structured architectures.
+Have designed RESTful APIs / experience with webhooks.
+You know how to make the best use of Monitoring, logging, and observability tools.
+Have experience with cloud infrastructure, CI/CD, and DevOps best practices.
+
+
+Sparetech's vision is to empower the zero-waste industrial sharing economy by enabling factory operators like BOSCH, PORSCHE, and AIRBUS to no longer store spare parts in their inventories, but rather receive parts when needed. To achieve this vision, we at Sparetech are building a data-driven platform that connects factory operators and suppliers across industries worldwide. Our platform aggregates product data from different partners and thousands of sources, allowing clients to search for the right part and enrich their data with it. Sparetech has successfully closed a €10 million Series A round led by Insight Partners to accelerate our growth. We take pride in its inclusive and collaborative culture, as well as its energetic and committed team, as reflected in the 4.9 stars Kununu ratings.
+
+At SPARETECH, we believe in equal opportunities for every human. No matter where you are from, what you think, what you believe in, what gender you are, or who you love.
+ChatGPT said:
+Job Requirements for Senior Software Engineer (Foundations Team) at SPARETECH
+Technical Requirements:
+
+Performance optimization jvm  nosql. sql
+webhooks.
+trong knowledge of logging, monitoring, and observability tools.
+Cloud & DevOps: Experience with cloud infrastructure, CI/CD, and DevOps best practices.
+prepare for the project
+
+
+Communication: Ability to effectively guide technological choices within the team.
+
+Collaboration: Values teamwork, clean code, and well-structured architectures.
+
+Problem-Solving: Ability to tackle complex technical challenges in scalability, performance, and security.
+
+
+Experience: 5+ years with JVM-based languages (Java, Kotlin, Scala).
+
+Backend Development: Design and build scalable, maintainable backend systems.
+
+Full-Stack Collaboration: Comfortable working across backend & frontend or closely with frontend engineers.
+
+Database Expertise: Proficiency in relational (SQL) and non-relational (NoSQL) databases, including performance optimization.
+
+API Development: Experience designing RESTful APIs and working with webhooks.
+
+Monitoring & Observability: Strong knowledge of logging, monitoring, and observability tools.
+
+Cloud & DevOps: Experience with cloud infrastructure, CI/CD, and DevOps best practices.
+
+Soft Skills & Work Approach:
+Communication: Ability to effectively guide technological choices within the team.
+
+Collaboration: Values teamwork, clean code, and well-structured architectures.
+
+Problem-Solving: Ability to tackle complex technical challenges in scalability, performance, and security.
+
+$ docker run -d -p 8000:8000 -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=Headstrong@123" --name splunk splunk/splunk:latest
+
+
+-----------code review
+------------ performance optimization
+--------best practises
+-------- complete project understanding.
+--- challanging work.
+--- sql interview question
+----react interviw question.
+---- feature added between java 8 to java 21
+
+
+infrastructure.security.info-endpoint-enabled
+@PreAuthorize("hasAuthority('" + DATA_WRITE + "')")
+
+CoreWebSecurityCustomizer
+
+infrastructure.security.cors.enabled
+infrastructure.security.cors
+
+infrastructure.security.enabled SecurityAutoConfiguration
+
+infrastructure.security.vtlogin.auth-endpoint-enabled
+
+
+Dear Hiring Manager,
+I'm writing to express my strong interest in the Java Full Stack Engineer position 
+ With over 17 years of professional Java experience, a passion for building scalable backend
+systems, and a solid foundation in Spring Boot, Kubernetes, and microservices architecture, I believe I can contribute
+significantly to your mission of streamlining data integration experiences and enabling large-scale data extraction.
+Throughout my career, I’ve designed and built enterprise-grade backend systems, consistently delivering high-perfor-
+mance, resilient solutions in fast-paced environments. My recent work involved modernizing legacy Java applications
+to cloud-native architectures using Spring Boot,React containerization with Docker, orchestration through Kubernetes, and
+implementing RESTful services at scale. I’ve also contributed to performance tuning initiatives and played a hands-on
+role in DevOps practices to ensure smooth deployments and high system availability.
+
+
+ I look forward to the possibility of contributing to your team.
+Thanks
+Mukesh
+
+
+
+https://local.o2online.de:8080/vt-login/authenticate/?service=secondfactor&auth-mode=secondfactor&target-app=https://local.o2online.de:19080/econtract/auswahlseite&goto=https://local.o2online.de:19080/econtract/auswahlseite
+
+
+
+Monday.
+
+As part of Traton Group, RIO delivers solutions for clients such as VW, Porsche, and Audi, automating their logistics by connecting thousands of suppliers to the manufacturers.
+Implementing microservices using AWS cloud solutions so that the platform can scale.
+End-to-end delivery responsibility.
+Participating in the entire life cycle of complex logistics business requirements from architecture, implementation, testing, and deployment.
+Maintaining and monitoring live production systems using Datadog.
+Member of the hiring team for interviewing backend and full-stack engineers.
+Technologies: Kotlin, Docker, AWS, Cloudformation, React, Javascript, OpenAPI, Datadog
+
+
+Perparation
+----------------
+
+JUnit 5 introduced the concept of extensions instead of runners, which allows more flexibility in extending JUnit’s functionality.
+add @ExtendWith(SpringExtension.class) to your test class. 
+However, if you’re using Spring Boot with @SpringBootTest, 
+this step is not required because @SpringBootTest includes @ExtendWith(SpringExtension.class) by default.
+
+--
+
+spring boot dependency (all version and depeddency)--spring boot parent (all plugins)
+
+DispatcherServletAutoConfiguration
+ErrorMvcAutoConfiguration
+JacksonHttpMessageConvertersConfiguration
+
+---
+
+@SpringBootConfiguration - launch spring context
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+public @interface SpringBootApplication {
+
+--
+java -jar app.jar --server.port=9090 --spring.profiles.active=prod
+
+Environment Variables
+
+Perfect for Docker, Kubernetes, or cloud setups:
+
+
+Edit
+export SERVER_PORT=9090
+export SPRING_PROFILES_ACTIVE=prod
+Spring automatically maps ENV_VAR style to camelCase properties.
+In a containerized world, you mount configs into the pod as env variables or volume files.
+
+Cloud Config Server (Spring Cloud)
+
+For distributed microservices, configs can come from a central Git repo:
+
+
+spring:
+  cloud:
+    config:
+      uri: http://config-server:8888
+
+----------
+
+ java -jar app.jar --spring.config.location=/opt/config/
+Spring Boot will look in /opt/config/ for:
+
+
+application.properties
+or
+application.yml
+--------------------
+
+@ConfigurationProperties(prefix = "custom")
+public class MyConfig {
+    private String value;
+}
+
+--------------------
+Embedded Server Examples:
+spring-boot-starter-tomcat
+spring-boot-starter-jetty
+spring-boot-starter-undertow
+--------
+
+@GetMapping (Short for @RequestMapping(method = RequestMethod.GET)) 
+@GetMapping("/hello")
+
+@RequestMapping set also basepath	
+
+-------------------------------
+Locale locale = LocaleContextHolder.getLocale();
+ messageSource.getMessage("good.morning.message", null, "Default Message", locale );
+
+---
+@RestControllerAdvice ResponseEntityExceptionHandler
+
+@ExceptionHandler(Exception.class)
+	public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+-------------
+
+server.port=8080
+logging.level.org.springframework=info
+management.endpoints.web.exposure.include=*
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.show-sql=true
+spring.h2.console.enabled=true
+
+
+spring.security.user.name=admin
+spring.security.user.password=admin
+
+------------------------
+one to one
+person.class
+ @OneToOne(mappedBy = "person")
+    private  License license;
+
+   */
+Licence (owner license it hold forieng key peroson_id)
+    @OneToOne (cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
+    @JoinColumn(name ="person_id")
+    private Person person;
+
+00---------------
+customer.java
+ @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
+    )
+    private Set<PhoneNumber> phoneNumbers;
+
+PhoneNumber.java
+
+   @ManyToOne
+    @JoinColumn(name = "customer_id") // customer_id is foreign key ,
+    //JoinColumn(name = "customer_id" ,referencedColumnName = "id") both line is same
+    private Customer customer;
+-------------------------------
+
+public class Project {
+    @ManyToMany(mappedBy = "projects")
+    private Set<Programmer> programmers;
+}
+
+    create table programmers_projects(
+                                     programmer_id int,
+                                     project_id int,
+                                     FOREIGN KEY (programmer_id)
+                                         REFERENCES programmer(id),
+                                     FOREIGN KEY (project_id)
+                                         REFERENCES project(id)
+)
+
+
+@Entity
+public class Programmer {
+    @ManyToMany(cascade = CascadeType.ALL,
+     fetch = FetchType.EAGER)
+    
+@JoinTable( name="programmers_projects",
+            joinColumns = @JoinColumn(name = "programmer_id" ,referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="project_id",referencedColumnName = "id")
+    )
+    private Set<Project> projects;
+}
+-----------------------------------------
+
+for swagger enough depednecy
+
+<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+---------------------
+
+Microservices - Evolution
+Goal: Evolve with Microservices
+V1 - Spring Boot 2.0.0 to 2.3.x
+V2 - Spring Boot 2.4.0 to 3.0.0 to ...
+Spring Cloud LoadBalancer (Ribbon)
+Spring Cloud Gateway (Zuul)
+Resilience4j (Hystrix)
+NEW: Docker
+NEW: Kubernetes
+NEW: Observability
+NEW: Micrometer (Spring
+
+
+
+----------------------------------
+(spring cloud)
+API gateway -    service discovery  -    all the services. ( customer service  ,simcard management, billing, notification,payment service)
+routing,                eureka server             
+ filtering, 
+url rewriting, 
+
+
+REST - syn immediate response.
+kafka- async communication, 
+redis - session managment, 
+
+tracing, zipkig slueth 
+transaction management-Saga
+obserbility- promethus , Grafana (dashboard)
+ELK - kibana logstash elastic search.
+Fault tolerance- circuit breaker, retry,
+docker for containerization, 
+kubernates for orchestration, fault taurance service discovery.
+config server 
+
+
+------------------------------------------
+ <!-- Spring Session Redis --> maintain session data in redis server
+    <dependency>
+        <groupId>org.springframework.session</groupId>
+        <artifactId>spring-session-data-redis</artifactId>
+    </dependency>
+
+    <!-- Redis Client --> this is redis cleint to interact with redisclient
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+
+here 
+
+  .formLogin()
+            .and()
+            .sessionManagement().maximumSessions(1); -- this allow only one active session per user.
+
+saving session data in redis
+
+@Component
+public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                        Authentication authentication) throws IOException {
+        String sessionId = request.getSession().getId();
+        Object user = authentication.getPrincipal();
+        redisTemplate.opsForValue().set("SESSION:" + sessionId, user, Duration.ofHours(1));
+        response.getWriter().write("Login successful. Session ID: " + sessionId);
+    }
+}
+
+
+// ===========================
+// ORDER-SERVICE using sessioid to get user
+// ===========================
+
+// OrderController.java
+@RestController
+@RequestMapping("/order")
+public class OrderController {
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @GetMapping("/userinfo")
+    public ResponseEntity<?> getUserInfo(@RequestHeader("X-Session-Id") String sessionId) {
+        Object user = redisTemplate.opsForValue().get("SESSION:" + sessionId);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or expired session");
+        }
+        return ResponseEntity.ok(user);
+    }
+}
+
+// RedisConfig.java (shared between services)
+@Configuration
+public class RedisConfig {
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        return new LettuceConnectionFactory("localhost", 6379);
+    }
+
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+        return template;
+  
+---------------------------------------
+Authetication startedy.
+
+1. login user -- save authetication user and session id in redis other service retrive it using reading session header and work further.
+2. do authetication on API gateway store validate provide seesion id user to other service.
+---------------------
+integration ELK in spring application
+Use logstash-logback-encoder for JSON output.
+Send logs to Logstash via TCP.
+Logstash forwards logs to Elasticsearch.
+Kibana visualizes everything.
+
+Step 1: Add Logback JSON Encoder Dependency
+
+Step 2: Configure Logback for JSON Output
+<configuration>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5000</destination> <!-- Logstash listens on port 5000 -->
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="LOGSTASH" />
+    </root>
+</configuration>
+
+
+ Step 3: Sample Java Logging Code
+
+ Step 4: Logstash Configuration Example
+  A simple logstash.conf file:
+  input {
+    tcp {
+      port => 5000
+      codec => json_lines
+    }
+  }
+
+  output {
+    elasticsearch {
+      hosts => ["http://localhost:9200"]
+      index => "springboot-logs-%{+YYYY.MM.dd}"
+    }
+  }
+
+
