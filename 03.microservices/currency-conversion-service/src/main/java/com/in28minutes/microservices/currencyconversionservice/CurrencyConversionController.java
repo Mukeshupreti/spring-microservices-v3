@@ -58,6 +58,7 @@ public class CurrencyConversionController {
 		
 	}
 
+
 	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversionFeign(
 			@PathVariable String from,
@@ -66,11 +67,13 @@ public class CurrencyConversionController {
 			) {
 				
 		CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
-				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
+
+		BigDecimal conversionMultiple = currencyConversion.getConversionMultiple();
+
+		return new CurrencyConversion(currencyConversion.getId(),
+				from, to, quantity,
+				conversionMultiple,
+				quantity.multiply(conversionMultiple),
 				currencyConversion.getEnvironment() + " " + "feign");
 		
 	}
