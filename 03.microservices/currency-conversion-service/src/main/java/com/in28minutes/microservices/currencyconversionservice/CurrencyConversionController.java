@@ -49,11 +49,12 @@ public class CurrencyConversionController {
 
 
 		CurrencyConversion currencyConversion = responseEntity.getBody();
-		
-		return new CurrencyConversion(currencyConversion.getId(), 
-				from, to, quantity, 
-				currencyConversion.getConversionMultiple(), 
-				quantity.multiply(currencyConversion.getConversionMultiple()), 
+
+		BigDecimal conversionMultiple = currencyConversion.getConversionMultiple();
+		return new CurrencyConversion(currencyConversion.getId(),
+				from, to, quantity,
+				conversionMultiple,
+				quantity.multiply(conversionMultiple),
 				currencyConversion.getEnvironment()+ " " + "rest template");
 		
 	}

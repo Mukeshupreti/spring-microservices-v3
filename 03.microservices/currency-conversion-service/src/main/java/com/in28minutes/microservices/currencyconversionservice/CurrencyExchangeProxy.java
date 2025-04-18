@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 // notice here name="currency-exchange" as it feign client of currency exchange.
 @FeignClient(name="currency-exchange") // for this without url you should have eureka server must be running
+// and currency exchange must be register to eureka server
 
 public interface CurrencyExchangeProxy {
 	
