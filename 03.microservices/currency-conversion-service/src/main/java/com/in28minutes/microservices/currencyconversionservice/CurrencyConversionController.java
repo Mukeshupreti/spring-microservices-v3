@@ -42,11 +42,12 @@ public class CurrencyConversionController {
 		HashMap<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("from",from);
 		uriVariables.put("to",to);
-		
+		// here currency exchange response matches with CurrenyCoversion so it is parsed
 		ResponseEntity<CurrencyConversion> responseEntity = restTemplate.getForEntity
 		("http://localhost:8000/currency-exchange/from/{from}/to/{to}", 
 				CurrencyConversion.class, uriVariables);
-		
+
+
 		CurrencyConversion currencyConversion = responseEntity.getBody();
 		
 		return new CurrencyConversion(currencyConversion.getId(), 

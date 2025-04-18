@@ -509,3 +509,7 @@ Step 2: Configure Logback for JSON Output
   }
 
 
+For circuit breaker below dependency is must
+
+aop, actuator, resielence4j-spring
+

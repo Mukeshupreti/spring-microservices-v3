@@ -11,7 +11,7 @@ public class CurrencyExchange {
 	
 	@Id
 	private Long id;
-	
+	// here from is the keyword in sql so change the column name
 	@Column(name = "currency_from")
 	private String from;
 	

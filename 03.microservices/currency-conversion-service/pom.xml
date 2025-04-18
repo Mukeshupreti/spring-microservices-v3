@@ -41,7 +41,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
 		<!-- Spring Boot 2 Tracing -->
 		
 		<!-- Sleuth (Tracing Configuration) > Brave (Tracer library) > Zipkin -->
