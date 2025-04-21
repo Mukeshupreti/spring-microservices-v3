@@ -1,0 +1,20 @@
+
+span {
+    font-size: large;
+    background-color: #1a1e21;
+    color: #0dcaf0;
+    border-radius: 150px;
+    padding: 50px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+
+}
+
+
+h1 {
+    font-size: x-large;
+    color: white;
+    text-align: left;
+    background-color:#565e64;
+}

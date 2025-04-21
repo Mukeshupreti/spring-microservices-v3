@@ -1,0 +1,113 @@
+.App {
+  text-align: left;
+  color: blue;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+p ,h3{
+  background-color: green;
+}
+
+.cB {
+  width: 100px;
+  height: 100px;
+  color: blueviolet;
+  font-size: 25px;
+
+}
+
+.chapter {
+  
+  font-size: 25px;
+  background: blue;
+  text-align: center;
+
+}
+
+.example {
+  font-size: 25px;
+  background: green;
+  text-align: center;
+
+}
+
+.heading {
+  background: violet;
+  text-align: center;
+
+}
+/* styling inbuild tag like ul and li */
+ul {
+list-style-type:none;   /* remove bullet in list */
+
+}
+
+li {
+text-decoration: none; /* Remove underline from hyperlink*/
+padding: 10px; /* space between two items */
+display: inline-block;  /* it will display all the item of list in one line  */
+}
+
+.user,.todo {
+  font-size: medium;  
+  font-weight: 600;
+  font-style: oblique;
+  color: black;
+  background-color: lightblue;
+  text-align: center;
+  border:groove;
+  margin: 1px;
+  display: table
+}
+
+.user {
+background-color: lightblue;
+
+}
+
+.todo {
+  background-color:lightgray;
+  }
+
+
+.customDiv{
+    margin: 10px;
+    border: 2px solid gray;
+    width: 350px;
+    height: 200px;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+  }
+select{
+    font-size: larger;
+    width: 200px;
+  }
+
+  li{
+    cursor: pointer;
+  }
+  
+
+
+
