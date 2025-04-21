@@ -512,4 +512,16 @@ Step 2: Configure Logback for JSON Output
 For circuit breaker below dependency is must
 
 aop, actuator, resielence4j-spring
+-------
+stream method count sorted min max
+
+Function interface can have one or more default method. you can add it in interface and will not break
+Before Java 8, if you wanted to add a new method to an interface, all implementing classes would break, because they were forced to implement the new method.
+
+With default methods, you can add new methods to an interface with a default implementation, and the existing classes don't have to implement them unless they want to override.
+
+java 9
+private static method in interface to reuse in default or static method in the interface
+List and set have of method which return unmodified collection
+
 
