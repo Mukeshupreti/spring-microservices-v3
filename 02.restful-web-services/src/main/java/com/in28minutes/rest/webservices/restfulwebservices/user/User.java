@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.in28minutes.rest.webservices.restfulwebservices.customvalidation.ValidName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,7 +26,8 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 	
-	@Size(min=2, message = "Name should have atleast 2 characters")
+	//@Size(min=2, message = "Name should have atleast 2 characters")
+	@ValidName
 	@JsonProperty("user_name") // change name field to user_name
 	private String name;
 	

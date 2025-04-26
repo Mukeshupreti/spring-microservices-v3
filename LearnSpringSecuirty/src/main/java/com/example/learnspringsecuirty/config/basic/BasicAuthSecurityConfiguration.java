@@ -77,7 +77,7 @@ and so on in all class if it takes customizer it can accept lamda function as cu
   }
 */
 
-
+//--------------------------------------------------------------------------------------------------------------------
   //Filter chain
   // authenticate all requests
   //basic authentication
@@ -186,6 +186,7 @@ and so on in all class if it takes customizer it can accept lamda function as cu
 // bcrypt and scrypt are hashing algorithm store  password in hashed format.
 //  when user enter password than it will be hashed and compare with hashed password in database.
 ///  after putting the BCryptPasswordEncoder you dont need  // .password("{noop}upreti")
+
 // encoding -- reverserable --- SHA-256 ,MP3 , usage - compression , streaming
 // encryption -- reverserable ,encoding with credential usage - data validation  (two type :symmetric and Asymmetic (public and private)
 // hashing -- irreversable - usage -data integrity

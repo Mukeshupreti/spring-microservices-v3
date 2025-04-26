@@ -1,6 +1,7 @@
 package org.example;
 
 
+import jakarta.transaction.Transactional;
 import org.example.relationship.manytoMany.entity.Programmer;
 import org.example.relationship.manytoMany.entity.Project;
 import org.example.relationship.oneToOne.entity.License;
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.transaction.Transactional;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;

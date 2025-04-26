@@ -1,0 +1,28 @@
+1.  read database done
+2.  read algo -1 done
+3.  make and application spring boot with database and unit test 1 hours
+4.  read no sql -45 minutes
+
+
+Challenging work
+----------------
+
+1. READ and write call separation
+2. AWS cloud migration (update infra)
+3. Sickyness
+4. wicket upgrade
+5. Autoscalling
+6. promethus
+
+
+M&M
+ You’re keen to learn new things and you can develop outstanding new features with Java and Spring Boot? You are interested to become part of an agile team working in mail systems? Your passion is software development and your code is high quality? Your work attitude is hands-on and you’re a strong team player? You see yourself described in the points below? Then we are looking forward to your application.
+
+ You have sound knowledge in object oriented programming with Java and web technologies such as JSON or RESTFul HTTP are no foreign concepts for you. Ideally, you've worked with Spring Boot, NOSQL and SQL databases, Microservices, containerised applications and Kubernetes before.
+
+ Java
+ spring boot
+ REST
+ NOSQL
+ SQL
+ docker and kubernates

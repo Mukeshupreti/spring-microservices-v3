@@ -1,6 +1,6 @@
 package org.example.relationship.oneToOne.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
