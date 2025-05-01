@@ -7,16 +7,25 @@ public class ReverserNumberWithOverFlowHandle {
         System.out.println("Enter the number");
         int value= scanner.nextInt();
         System.out.println(value);
-        reverserNumber(value);
+        System.out.println(reverserNumber(value));
     }
 
-    private static void reverserNumber(int value) {
+    private static int reverserNumber(int value) {
+        int max=Integer.MAX_VALUE;
+        int min=Integer.MIN_VALUE;
+        if(value==max || value==min){
+            return 0;
+        }
+
         int reverseNumber=0;
-        while(value>0){
+        while(value!=0){
             int lastDigit=value%10;
             reverseNumber=reverseNumber*10+lastDigit;
+            if(reverseNumber>max/10) return 0;
+            if(reverseNumber<min/10) return 0;
             value=value/10;
+
         }
-        System.out.println("reversedNubmer :"+reverseNumber);
+        return reverseNumber;
     }
 }
