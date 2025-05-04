@@ -1,6 +1,5 @@
 package algorithms.Numbers;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class PalindromNumber {
