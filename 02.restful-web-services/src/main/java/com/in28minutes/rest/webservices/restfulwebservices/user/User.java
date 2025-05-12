@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.in28minutes.rest.webservices.restfulwebservices.customvalidation.ValidDate;
 import com.in28minutes.rest.webservices.restfulwebservices.customvalidation.ValidName;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class User {
 	@ValidName
 	@JsonProperty("user_name") // change name field to user_name
 	private String name;
-	
+
 	@Past(message = "Birth Date should be in the past")
 	//@JsonProperty("birth_date")
 	private LocalDate birthDate;

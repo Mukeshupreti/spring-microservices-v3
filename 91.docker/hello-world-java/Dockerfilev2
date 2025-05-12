@@ -1,0 +1,10 @@
+FROM maven:3.9.6-eclipse-temurin-21 AS build 
+WORKDIR .
+COPY .  /app
+RUN mvn -f ./app/pom.xml clean package
+
+FROM eclipse-temurin:21-jdk 
+EXPOSE 5000
+COPY --from=build /app/target/*.jar  hello.jar
+ENTRYPOINT ["sh","-c","java -jar hello.jar"]
+
