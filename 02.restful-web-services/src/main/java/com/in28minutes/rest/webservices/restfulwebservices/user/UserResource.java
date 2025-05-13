@@ -38,7 +38,10 @@ public class UserResource {
 	
 	//EntityModel
 	//WebMvcLinkBuilder
-	
+	@GetMapping("/users-test/{id}")
+	public User retrieveUserTest(@PathVariable int id) {
+		return service.findOne(id);
+	}
 	@GetMapping("/users/{id}")
 	public EntityModel<User> retrieveUser(@PathVariable int id) {
 		User user = service.findOne(id);

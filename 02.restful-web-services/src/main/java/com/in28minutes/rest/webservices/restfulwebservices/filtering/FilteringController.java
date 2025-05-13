@@ -15,7 +15,11 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 //
 @RestController
 public class FilteringController {
-	
+	// output:
+/*	{
+		"field1": "value1",
+			"field3": "value3"
+	}*/
 	@GetMapping("/filtering") //field2
 	public MappingJacksonValue filtering() {
 		
@@ -24,22 +28,31 @@ public class FilteringController {
 		MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(someBean);
 		// define filter using SimpleBeanPropertyFilter.filterOutAllExcept
 		SimpleBeanPropertyFilter filter = 
-				SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3");
+				SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3"); // filter out field2
 
-		// add filter in filter provider
+		// add filter in filter provider this id SomeBeanFilter1 you have assign at somebean @JsonFilter("SomeBeanFilter1")
+		// this is linking between filter and your somebean
 		FilterProvider filters = 
-				new SimpleFilterProvider().addFilter("SomeBeanFilter", filter );
+				new SimpleFilterProvider().addFilter("SomeBeanFilter1", filter );
 		// provide filter to mappingJacsonValue
 		mappingJacksonValue.setFilters(filters );
 		
 		
 		return mappingJacksonValue;
-		// output:
 
-		//  "field3": "value3"
-		//}
 	}
+ //output
 
+/*[
+	{
+		"field2": "value2",
+			"field3": "value3"
+	},
+	{
+		"field2": "value5",
+			"field3": "value6"
+	}
+]*/
 	@GetMapping("/filtering-list") //field2, field3
 	public MappingJacksonValue filteringList() {
 
@@ -48,7 +61,7 @@ public class FilteringController {
 		MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(list);
 		
 		SimpleBeanPropertyFilter filter = 
-				SimpleBeanPropertyFilter.filterOutAllExcept("field2","field3");
+				SimpleBeanPropertyFilter.filterOutAllExcept("field2","field3"); // filter out filed2
 		
 		FilterProvider filters = 
 				new SimpleFilterProvider().addFilter("SomeBeanFilter", filter );
