@@ -14,3 +14,7 @@ Map<Boolean, List<Person>> result = stream.collect(Collectors.partitioningBy(p -
 
 
 ### Bonus: collect() never returns Optional — it returns whatever your Collector defines.
+
+map(String::length)	✅	length() takes no arguments, so it's valid on each string.
+map(String::split)	❌	split() requires a regex parameter, but none is provided.
+map(s -> s.split(" "))	✅	Using a lambda allows passing the required parameter.

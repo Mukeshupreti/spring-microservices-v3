@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.*;
 
 public class AllInOne {
@@ -27,54 +28,79 @@ public class AllInOne {
 
 
     public static void main(String[] args) {
+        ///Q1: given a list of word you have to get map (letter,count(letter)
+        //letterCounter();
 
-        letterCounter();
+        ///Q2: given a list of lines get count of world
+      // wordCounter();
 
+        ///Q3: given a list of world get all unique letters
+       // getAllUniqueCharacter();
 
-        buildingStreams();
-
+        ///Q4: different way of building streams Arrays.stream(numbers); Stream.of
+        //buildingStreams();
+        ///Q4: given transactions list you have to create map of (transactionId , value)
         convertTransactionListToMap();
 
-        CollectorsMethods();
+        //CollectorsMethods();
 
 
-        limitFunction();
+        //limitFunction();
 
-        reduceMethod();
-
-
-        ifPresentOfOptional();
+        //reduceMethod();
 
 
-        maptoIntFunction();
+       // ifPresentOfOptional();
 
 
-
-        uniqueWordInFile();
+        //maptoIntFunction();
 
 
 
+        //uniqueWordInFile();
 
-        findingMaxTransaction();
+
+
+
+       // findingMaxTransaction();
 
         //
 
-        expensiveTransaction();
+        //expensiveTransaction();
 
-        getExpensivecity();
+        //getExpensivecity();
 
-        getExpensivecityV2();
+        //getExpensivecityV2();
 
-        howManyTransactions();
+        //howManyTransactions();
 
-        totalValue();
+        //totalValue();
 
-        averaging();
+        //averaging();
 
-        highestTransaction();
+        //highestTransaction();
 
-        reducing();
+        //reducing();
 
+
+    }
+
+    private static void getAllUniqueCharacter() {
+        List<String> words = Arrays.asList("hello", "world");
+       List<String> unique= words.stream().map(word->word.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(unique);
+    }
+
+    private static void wordCounter() {
+
+        List<String> lines=Arrays.asList("My name is mukesh","I live in lilienthalstrasee","I lives in augsburg");
+       long count=  lines.stream().map(line->line.split(" "))
+                .flatMap(Arrays::stream)
+                .count();
+        System.out.println(count);
 
     }
 
@@ -235,7 +261,7 @@ public class AllInOne {
 
     private static void reduceMethod() {
         System.out.println("limitFunction");
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> numbers = asList(1, 2, 3, 4, 5, 6, 7, 8);
         int product = numbers.stream().reduce(1, (a, b) -> a * b);
         System.out.println(product);
         int product2 = numbers.stream().reduce(1, Integer::max);
@@ -251,7 +277,7 @@ public class AllInOne {
 
     private static void limitFunction() {
         System.out.println("limitFunction");
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> numbers = asList(1, 2, 3, 4, 5, 6, 7, 8);
 
         numbers.stream()
                 .filter(n -> {

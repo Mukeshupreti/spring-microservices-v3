@@ -1,4 +1,4 @@
-package streams.option;
+package streams.majorMethods.option;
 
 public class OptionExplore {
 
