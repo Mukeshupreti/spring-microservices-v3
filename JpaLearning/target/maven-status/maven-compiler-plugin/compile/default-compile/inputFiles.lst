@@ -1,0 +1,10 @@
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/manytoMany/entity/Project.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneToOne/repository/LicenseRepository.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/manytoMany/entity/Programmer.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneToOne/entity/Person.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneToOne/entity/License.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/DemoApplication.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/manytoMany/repository/ProgrammerRepository.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneTomany/repository/CustomerRepository.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneTomany/entity/PhoneNumber.java
+/Users/mukeshupreti/Documents/Learning/spring-microservices-v3/JpaLearning/src/main/java/org/example/relationship/oneTomany/entity/Customer.java
