@@ -89,7 +89,10 @@ public class UserJpaResource {
 						.path("/{id}")
 						.buildAndExpand(savedUser.getId())
 						.toUri();   
-		
+		// or ResponseEntity.created(location).body(savedUser);
+		// here Therefore, this compiles with a warning suppressed or ignored, because:
+		//
+		//Both ResponseEntity<User> and ResponseEntity<Void> are the same class at runtime: just ResponseEntity.
 		return ResponseEntity.created(location).build();
 	}
 
