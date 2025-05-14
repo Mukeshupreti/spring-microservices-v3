@@ -1,15 +1,3 @@
- 1&1 https://www.mail-and-media.com/en/job/en-177.html
- Spring Boot based Microservices and deploy them on our in-house Kubernetes clusters.
-
- You’re keen to learn new things and you can develop outstanding new features with Java and Spring Boot? You are interested to become part of an agile team working in mail systems? Your passion is software development and your code is high quality? Your work attitude is hands-on and you’re a strong team player? You see yourself described in the points below? Then we are looking forward to your application.
-
- You have sound knowledge in object oriented programming with Java and web technologies such as JSON or RESTFul HTTP are no foreign concepts for you. Ideally, you've worked with Spring Boot, NOSQL and SQL databases, Microservices, containerised applications and Kubernetes before.
-
- You have experience with Linux as a development- and server environment in high load scenarios as well as distributed systems.
- You are familiar with automated software quality assurance (Unit Testing, Performance Tests, Acceptance Tests) and agile development in a continuous delivery environment.
-
- You are communicative, open to new ideas and enjoy working in an agile team.
- Good English skills are necessary, German is a plus while not necessary.
 
 
  Munich (Best Option 🚀)
@@ -83,12 +71,25 @@ Become a part of our team if you
 ---- feature added between java 8 to java 21
 
 
+==============================
+Common Optional methods
+Optional.of(value) – for non-null values (throws if null)
 
+Optional.ofNullable(value) – safely wraps nullable values
+
+Optional.empty() – returns an empty Optional
+
+optional.isPresent() / optional.isEmpty() – to check presence
+
+optional.get() – gets the value (throws if empty)
+
+optional.orElse(default) / orElseGet() / orElseThrow()
 
 
 
 
 N+1 problem
+=)============
 Suppose you have two tables:
 
 Author (id, name)

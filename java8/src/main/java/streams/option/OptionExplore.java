@@ -26,7 +26,9 @@ public class OptionExplore {
     void ifPresent(Consumer<? super T> action)           // Executes if value is present
     void ifPresentOrElse(Consumer<? super T>, Runnable)  // Executes one of two actions (Java 9+)*/
 
+    public static void main(String[] args) {
 
+    }
 
 
 
