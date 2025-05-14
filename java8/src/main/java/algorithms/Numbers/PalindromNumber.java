@@ -1,7 +1,7 @@
 package algorithms.Numbers;
 
 import java.util.Scanner;
-
+// url: https://leetcode.com/problems/palindrome-number/
 public class PalindromNumber {
 
     public static void main(String[] args) {

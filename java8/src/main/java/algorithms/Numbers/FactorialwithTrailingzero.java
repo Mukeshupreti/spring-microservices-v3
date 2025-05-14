@@ -1,7 +1,7 @@
 package algorithms.Numbers;
 
 import java.util.Scanner;
-
+// url: https://leetcode.com/problems/factorial-trailing-zeroes/
 public class FactorialwithTrailingzero {
 
     public static void main(String[] args) {
