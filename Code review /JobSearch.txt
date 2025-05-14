@@ -71,61 +71,6 @@ Solve complex technical challenges related to scalability, performance, and secu
 Take ownership and solve complex product problems and collaborate with a cross-functional team of product managers, designers, and fellow engineers.
 Become a part of our team if you
 
-Have 5+ years of experience building software with JVM-based languages (Java, Kotlin, Scala).
-Have experience designing robust, scalable, and maintainable backend systems.
-Have excellent communication skills that enable you to efficiently steer technological choices within the domains owned by your team.
-Are comfortable working across the stack (backend & frontend) or collaborating closely with frontend engineers.
-Are proficient in relational and non-relational databases and optimizing database performance.
-
-Value collaboration, clean code, and well-structured architectures.
-Have designed RESTful APIs / experience with webhooks.
-You know how to make the best use of Monitoring, logging, and observability tools.
-Have experience with cloud infrastructure, CI/CD, and DevOps best practices.
-
-
-Sparetech's vision is to empower the zero-waste industrial sharing economy by enabling factory operators like BOSCH, PORSCHE, and AIRBUS to no longer store spare parts in their inventories, but rather receive parts when needed. To achieve this vision, we at Sparetech are building a data-driven platform that connects factory operators and suppliers across industries worldwide. Our platform aggregates product data from different partners and thousands of sources, allowing clients to search for the right part and enrich their data with it. Sparetech has successfully closed a €10 million Series A round led by Insight Partners to accelerate our growth. We take pride in its inclusive and collaborative culture, as well as its energetic and committed team, as reflected in the 4.9 stars Kununu ratings.
-
-At SPARETECH, we believe in equal opportunities for every human. No matter where you are from, what you think, what you believe in, what gender you are, or who you love.
-ChatGPT said:
-Job Requirements for Senior Software Engineer (Foundations Team) at SPARETECH
-Technical Requirements:
-
-Performance optimization jvm  nosql. sql
-webhooks.
-trong knowledge of logging, monitoring, and observability tools.
-Cloud & DevOps: Experience with cloud infrastructure, CI/CD, and DevOps best practices.
-prepare for the project
-
-
-Communication: Ability to effectively guide technological choices within the team.
-
-Collaboration: Values teamwork, clean code, and well-structured architectures.
-
-Problem-Solving: Ability to tackle complex technical challenges in scalability, performance, and security.
-
-
-Experience: 5+ years with JVM-based languages (Java, Kotlin, Scala).
-
-Backend Development: Design and build scalable, maintainable backend systems.
-
-Full-Stack Collaboration: Comfortable working across backend & frontend or closely with frontend engineers.
-
-Database Expertise: Proficiency in relational (SQL) and non-relational (NoSQL) databases, including performance optimization.
-
-API Development: Experience designing RESTful APIs and working with webhooks.
-
-Monitoring & Observability: Strong knowledge of logging, monitoring, and observability tools.
-
-Cloud & DevOps: Experience with cloud infrastructure, CI/CD, and DevOps best practices.
-
-Soft Skills & Work Approach:
-Communication: Ability to effectively guide technological choices within the team.
-
-Collaboration: Values teamwork, clean code, and well-structured architectures.
-
-Problem-Solving: Ability to tackle complex technical challenges in scalability, performance, and security.
-
-$ docker run -d -p 8000:8000 -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_PASSWORD=Headstrong@123" --name splunk splunk/splunk:latest
 
 
 -----------code review
@@ -138,51 +83,28 @@ $ docker run -d -p 8000:8000 -e "SPLUNK_START_ARGS=--accept-license" -e "SPLUNK_
 ---- feature added between java 8 to java 21
 
 
-infrastructure.security.info-endpoint-enabled
-@PreAuthorize("hasAuthority('" + DATA_WRITE + "')")
-
-CoreWebSecurityCustomizer
-
-infrastructure.security.cors.enabled
-infrastructure.security.cors
-
-infrastructure.security.enabled SecurityAutoConfiguration
-
-infrastructure.security.vtlogin.auth-endpoint-enabled
-
-
-Dear Hiring Manager,
-I'm writing to express my strong interest in the Java Full Stack Engineer position 
- With over 17 years of professional Java experience, a passion for building scalable backend
-systems, and a solid foundation in Spring Boot, Kubernetes, and microservices architecture, I believe I can contribute
-significantly to your mission of streamlining data integration experiences and enabling large-scale data extraction.
-Throughout my career, I’ve designed and built enterprise-grade backend systems, consistently delivering high-perfor-
-mance, resilient solutions in fast-paced environments. My recent work involved modernizing legacy Java applications
-to cloud-native architectures using Spring Boot,React containerization with Docker, orchestration through Kubernetes, and
-implementing RESTful services at scale. I’ve also contributed to performance tuning initiatives and played a hands-on
-role in DevOps practices to ensure smooth deployments and high system availability.
-
-
- I look forward to the possibility of contributing to your team.
-Thanks
-Mukesh
 
 
 
-https://local.o2online.de:8080/vt-login/authenticate/?service=secondfactor&auth-mode=secondfactor&target-app=https://local.o2online.de:19080/econtract/auswahlseite&goto=https://local.o2online.de:19080/econtract/auswahlseite
 
 
+N+1 problem
+Suppose you have two tables:
 
-Monday.
+Author (id, name)
 
-As part of Traton Group, RIO delivers solutions for clients such as VW, Porsche, and Audi, automating their logistics by connecting thousands of suppliers to the manufacturers.
-Implementing microservices using AWS cloud solutions so that the platform can scale.
-End-to-end delivery responsibility.
-Participating in the entire life cycle of complex logistics business requirements from architecture, implementation, testing, and deployment.
-Maintaining and monitoring live production systems using Datadog.
-Member of the hiring team for interviewing backend and full-stack engineers.
-Technologies: Kotlin, Docker, AWS, Cloudformation, React, Javascript, OpenAPI, Datadog
+Book (id, title, author_id)
 
+You want to retrieve all authors along with their books.
+for each (n) auther you have to execute query to get there book
+
+SELECT * FROM Author;
+not for each other (n author)
+SELECT * FROM Book WHERE author_id = ?;
+This is n problem to solve this use join
+SELECT a.*, b.*
+FROM Author a
+LEFT JOIN Book b ON a.id = b.author_id;
 
 Perparation
 ----------------
