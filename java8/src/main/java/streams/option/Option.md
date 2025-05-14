@@ -96,6 +96,18 @@ Use orElseThrow(Supplier<Exception>).
 String value = Optional.empty()
 .orElseThrow(() -> new IllegalArgumentException("Value not present"));
 
+## How to do null pointer check
+### void NullPointerException with isPresent() / ifPresent()
+
+Optional<String> optional = Optional.ofNullable(getNullableString());
+
+if (optional.isPresent()) {
+System.out.println(optional.get());
+}
+#Better way:
+
+
+optional.ifPresent(value -> System.out.println(value));
 
 ### How can Optional be misused and lead to performance issues?
 Using Optional as a method parameter or field in a class can lead to unnecessary object creation.

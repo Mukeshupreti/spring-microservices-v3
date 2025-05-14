@@ -13,12 +13,12 @@ public class SecondMax {
     public static void main(String[] args) {
         List<Integer> list= List.of(1,1,3,4,5,6);
 
-       // getMaxvalue();
+       // getSecondMaxvalue();
         getfirstNonRepeatableChar();
 
     }
 
-    private static void getMaxvalue() {
+    private static void getSecondMaxvalue() {
         List<Integer> list= List.of(1,1,3,4,5,6);
         ///  my way
         Integer max= list.stream().max(Integer::compareTo).stream().findFirst().orElse(null);

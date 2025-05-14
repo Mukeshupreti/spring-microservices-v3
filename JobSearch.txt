@@ -23,3 +23,48 @@ my linked din profile https://www.linkedin.com/in/mukesh-u-8473a313/
 
 
 https://www.linkedin.com/jobs/search/?currentJobId=4207381887&f_C=71273283&geoId=92000000&origin=COMPANY_PAGE_JOBS_CLUSTER_EXPANSION&originToLandingJobPostings=4207339336%2C4225641315%2C4207381887%2C4208180856%2C4208184712%2C4225637631%2C4017453538
+
+Join our innovative tech team of 5 as a Full-Stack Software Engineer (m/f/d). Certivity is a tech startup that digitizes how product makers manage regulatory requirements to be compliant. As a Full Stack Software Engineer, you will work with the latest innovative technologies to develop and maintain our cloud SaaS (Software as a Service) application.
+
+What You Will Do
+
+Develop scalable full-stack applications with Java Spring Boot and React
+Build efficient backend services and intuitive user interfaces
+Deploy applications in cloud and containerized environments
+
+Our TechStack
+
+Frontend: React 18, Node 23, TailwindCSS 3.1, Tanstack Query 5.28
+Backend: Spring Boot 3.2, Java 21
+Infrastructure: MongoDB, Azure cloud
+
+Your profile
+
+5+ years of experience in software development
+Expertise in Java Spring Boot and React (or Angular/Vue)
+Expertise with NoSQL Databases such as MongoDB
+Hands-on experience with Docker and cloud platforms (AWS, Azure, or GCP)
+Proficiency in Git, command-line interfaces, and containerized deployments
+English as the primary language of communication
+
+Nice To Have
+
+Familiarity with CI/CD, or Serverless architectures
+
+Why us?
+
+hybrid work in Munich or Stuttgart 
+flexible working time 
+30 days of vacation per year
+30 days of workcation per year, in the EU and some selected countries
+high autonomy and flat hierarchies
+direct access to the users, quick iteration cycles
+
+Closing
+
+We welcome candidates from all backgrounds and encourage diversity in our team. We encourage female and diverse engineers to apply and join our mission-driven culture that values open communication, work-life balance, and a welcoming environment. Convince us with your personality and your skills - and together we will make great things happen!
+
+About Us
+
+Founded in 2021, we at Certivity are a young, creative, and dynamic team of highly skilled domain experts working on innovative RegTech Software. Our solution will shape and define the term “RegTech” as we develop a completely new product for the highly complex and not yet digitized environment of product regulations. Our primary focus is the automotive industry, with options to expand to many other domains as well. Our B2B cloud platform bundles all relevant tasks for compliance with vehicle regulations and laws. For more information about us and our product have a look at our website.
+
