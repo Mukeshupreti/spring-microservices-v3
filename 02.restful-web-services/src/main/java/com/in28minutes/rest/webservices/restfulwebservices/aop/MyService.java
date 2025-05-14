@@ -7,11 +7,12 @@ public class MyService {
 
     public void performTask() {
         System.out.println("Performing a task in MyService.");
-        try {
+        // enable it if you want to enable
+       /* try {
             Thread.currentThread().wait(100L);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     public String getMessage(String name) {

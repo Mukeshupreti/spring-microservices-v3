@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-//@JsonIgnoreProperties({"field1","field2"})
-@JsonFilter("SomeBeanFilter1")
+//@JsonIgnoreProperties({"field1","field2"})  // this static filtering
+@JsonFilter("SomeBeanFilter1") ///  this is dynmaic filtering
 public class SomeBean {
 	private String field1;
 	

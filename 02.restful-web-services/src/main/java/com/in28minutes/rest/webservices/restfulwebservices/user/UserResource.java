@@ -24,6 +24,9 @@ public class UserResource {
 
 	private UserDaoService service;
 
+	//Accept (response body): application/xml  :Tells the server the format the client expects in the response.
+	//Content-Type  (request body): application/xml :Tells the server the format of the data being sent in the HTTP request body.
+
 	public UserResource(UserDaoService service) {
 		this.service = service;
 	}
@@ -61,7 +64,7 @@ public class UserResource {
 	public void deleteUser(@PathVariable int id) {
 		service.deleteById(id);
 	}
-
+    // @Valid annotation is require to valid user object
 	@PostMapping("/users")
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		

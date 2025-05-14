@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VersioningPersonController {
+
+	// URI versioning
+
 	// it contains only name string
 	@GetMapping("/v1/person")
 	public PersonV1 getFirstVersionOfPerson() {
@@ -15,6 +18,9 @@ public class VersioningPersonController {
 	public PersonV2 getSecondVersionOfPerson() {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
+
+	////Request Param Versioning
+
   /// http://localhost:8080/person?version=1
 	@GetMapping(path = "/person", params = "version=1")
 	public PersonV1 getFirstVersionOfPersonRequestParameter() {
@@ -25,6 +31,10 @@ public class VersioningPersonController {
 	public PersonV2 getSecondVersionOfPersonRequestParameter() {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
+
+
+	///Header Versioning
+
 // pass header X-API-VERSION="application/vnd.company.app-v1+json"
 	@GetMapping(path = "/person/header", headers = "X-API-VERSION=1")
 	public PersonV1 getFirstVersionOfPersonRequestHeader() {
@@ -36,6 +46,7 @@ public class VersioningPersonController {
 		return new PersonV2(new Name("Bob", "Charlie"));
 	}
 
+////	Content Negotiation Versioning
   // pass header Accept="application/vnd.company.app-v1+json"
 	// Media type
 	@GetMapping(path = "/person/accept", produces = "application/vnd.company.app-v1+json")

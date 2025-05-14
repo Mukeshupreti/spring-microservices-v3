@@ -8,13 +8,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 ///*
-//Type	Annotation	Purpose
+/// Advices
 //Before Advice	@Before	Runs before the method executes
 //After Advice	@After	Runs after the method finishes (even if exception occurs)
 //After Returning	@AfterReturning	Runs after method returns successfully
 //After Throwing	@AfterThrowing	Runs if method throws exception
 //Around Advice	@Around	Surrounds method; controls execution
 //*/
+     /*Aspect :Aspect is class where you define cross cutting concern (Advice) and pointcuts
+
+        Advice : crosscutting concern implementation
+        JoinPoint : Points in java program where you apply crosscutting concern (advice) eg: method,field,constructor. Only Method level Joinpoint are supported by java
+        PointCut : define regular expression which identify places where advice will apply to join point.( expression language to express the join point.*/
 
 
 
@@ -59,7 +64,7 @@ public class LoggingAspect {
     }
 
     @AfterReturning(
-            pointcut = "execution(* com.example.service.*.*(..))",
+            pointcut = "execution(* com.in28minutes.rest.webservices.restfulwebservices.aop.*.*(..))",
             returning = "result"
     )
     public void afterReturningAdvice(JoinPoint joinPoint, Object result) {
@@ -67,7 +72,7 @@ public class LoggingAspect {
     }
 
     @AfterThrowing(
-            pointcut = "execution(* com.example.service.*.*(..))",
+            pointcut = "execution(* com.in28minutes.rest.webservices.restfulwebservices.aop.*.*(..))",
             throwing = "ex"
     )
     public void afterThrowingAdvice(JoinPoint joinPoint, Throwable ex) {
