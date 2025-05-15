@@ -13,7 +13,8 @@ public class Person {
     private String lastName;
 
     private  int age;
-   //The mappedBy attribute in JPA defines the owner of a relationship in a bidirectional
+   //The mappedBy attribute in JPA defines the owner of a
+    // relationship in a bidirectional
    // mapping.
    // Owning Side (license - Foreign Key Holder)
 
