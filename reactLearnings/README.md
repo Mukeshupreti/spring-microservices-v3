@@ -2,7 +2,7 @@
 
 ##
 ### 0 :[Start App.js](./../reactLearnings/src/App.js) 
-### 1 : [React Fundamental](/src/C1/C1.js)
+### 1 : [React Fundamental](./../reactLearnings/src/C1/C1.js)
 
 ### 2 : [List & Keys](./../reactLearnings/src/C2/C2.js)
 
