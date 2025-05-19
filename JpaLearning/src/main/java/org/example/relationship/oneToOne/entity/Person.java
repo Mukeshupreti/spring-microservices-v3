@@ -17,7 +17,7 @@ public class Person {
     // relationship in a bidirectional
    // mapping.
    // Owning Side (license - Foreign Key Holder)
-
+   // licence is mapped by person means licence will own person
     @OneToOne(mappedBy = "person")
     private  License license;
 
