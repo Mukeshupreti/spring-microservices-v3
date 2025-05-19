@@ -39,6 +39,7 @@
 
 # Run project commond
  ### 1. cd /home/mukeshupreti/Documents/learning/Econtract KT/work/react/reactLearnings
+#### npm install
 ### 2. npm start
 
 
