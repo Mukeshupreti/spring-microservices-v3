@@ -1,8 +1,8 @@
 package designPatters.creational;
 
 
-import designPatters.Shape;
-import designPatters.ShapeFactory;
+import designPatters.creational.factory.code.Shape;
+import designPatters.creational.factory.code.ShapeFactory;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

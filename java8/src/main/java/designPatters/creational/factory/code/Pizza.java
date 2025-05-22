@@ -1,4 +1,4 @@
-package designPatters;
+package designPatters.creational.factory.code;
 
 public class Pizza implements Shape {
   @Override

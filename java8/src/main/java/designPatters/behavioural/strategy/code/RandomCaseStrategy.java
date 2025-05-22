@@ -1,4 +1,4 @@
-package designPatters.behavioural.stragtegy.code;
+package designPatters.behavioural.strategy.code;
 
 import java.util.Random;
 

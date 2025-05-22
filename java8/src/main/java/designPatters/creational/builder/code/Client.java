@@ -1,4 +1,4 @@
-package designPatters.creational.builder;
+package designPatters.creational.builder.code;
 
 public class Client {
 
