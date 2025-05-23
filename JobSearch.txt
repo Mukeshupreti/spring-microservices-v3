@@ -20,6 +20,42 @@ Switzerland
 
 my linked din profile https://www.linkedin.com/in/mukesh-u-8473a313/
 
+The legacy system was monolithic, handling SIM card activations and tariff purchases with synchronous third-party integrations. It was slow, brittle, and unscalable—especially during campaign spikes (e.g., Black Friday), where response times spiked and some services failed entirely.
+
+🧩 My Approach
+1. Architecture Redesign
+From Monolith to Microservices: Split the core domains (SIM lifecycle, Tariff management, User management) into isolated services using domain-driven design principles.
+
+Event-Driven Communication: Introduced asynchronous messaging via Kafka for downstream operations like billing and notifications to reduce tight coupling.
+
+API Gateway + Service Mesh: Used Spring Cloud Gateway and Istio for routing, resilience, and observability.
+
+Resilience4j was added for timeouts, retries, and fallback.
+
+2. Team Management
+Ownership by Domain: Assigned each dev a microservice domain with full CI/CD responsibility.
+
+Sprint Planning + Tech Deep Dives: Weekly technical huddles to unblock, align, and brainstorm.
+
+Code Quality: Enforced coverage thresholds and peer reviews. Used SonarQube to maintain code quality KPIs.
+
+Mentorship: Paired senior/junior devs for critical modules to accelerate onboarding and improve cross-functional skills.
+
+3. Cloud & Infrastructure
+GCP Migration:
+
+Provisioned resources using Terraform (IaC)
+
+Utilized GCP Pub/Sub, Cloud SQL, and GKE (Google Kubernetes Engine) for container orchestration
+
+Dockerized All Services: Ensured consistent builds and smooth CI/CD pipelines
+
+CI/CD Pipelines: Built end-to-end pipelines with GitLab CI and Jenkins, including linting, testing, security scans, and auto-deploys.
+
+4. Observability & Performance
+Integrated ELK (Elasticsearch, Logstash, Kibana) and Prometheus + Grafana to monitor service health, error rates, and request latencies.
+
+Defined SLOs and alerts to catch regressions early.
 
 
 https://www.linkedin.com/jobs/search/?currentJobId=4207381887&f_C=71273283&geoId=92000000&origin=COMPANY_PAGE_JOBS_CLUSTER_EXPANSION&originToLandingJobPostings=4207339336%2C4225641315%2C4207381887%2C4208180856%2C4208184712%2C4225637631%2C4017453538
@@ -68,3 +104,21 @@ About Us
 
 Founded in 2021, we at Certivity are a young, creative, and dynamic team of highly skilled domain experts working on innovative RegTech Software. Our solution will shape and define the term “RegTech” as we develop a completely new product for the highly complex and not yet digitized environment of product regulations. Our primary focus is the automotive industry, with options to expand to many other domains as well. Our B2B cloud platform bundles all relevant tasks for compliance with vehicle regulations and laws. For more information about us and our product have a look at our website.
 
+proactive,
+handle situation
+try to break down problem into 
+no micro mangement.
+Their calm and solution-oriented approach during challenging times helps keep the team focused and motivated. 
+Delegation 
+
+He is approachable, supportive, and always open to hearing our ideas. What stands out most is his ability to give clear direction while also empowering us to make decisions. he recognize individual contributions and provide constructive feedback that helps us grow. He is calm  and consistent communication make a big difference, especially during high-pressure situations. 
+
+Adrak
+lahsan
+began
+dhaniya
+podina
+action washing powder
+biscuit.
+lidle chips
+XXL lidle.

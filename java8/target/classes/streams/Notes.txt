@@ -1,0 +1,74 @@
+Stream Functions
+                  ------------------
+
+
+Functional Interfaces in java example
+
+java.util.function Package:
+The java.util.function package in Java 8 contains many builtin functional interfaces like-
+
+Predicate:
+----------
+The Predicate interface has an abstract method test which gives a Boolean value as a result for the specified argument. Its prototype is
+public Predicate
+{
+   public boolean test(T  t);
+ }
+BinaryOperator:
+------------------
+ The BinaryOperator interface has an abstract method apply which takes two argument and returns a result of same type. Its prototype is
+public interface BinaryOperator
+{
+     public T apply(T x, T y);
+}
+Function:
+-----------
+The Function interface has an abstract method apply which takes argument of type T and returns a result of type R. Its prototype is
+public interface Function
+{
+   public R apply(T t);
+}
+
+
+
+
+Map
+----
+
+<R> Stream<R> map(Function<? super T, ? extends R> mapper);
+
+flatMap
+-------
+
+ <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
+
+The flatMap() operation has the effect of applying a one-to-many transformation to the elements of the stream, and then
+flattening the resulting elements into a new stream.
+Examples.
+If orders is a stream of purchase orders, and each purchase order contains a collection of line items, then the following
+produces a stream containing all the line items in all the orders:
+
+     orders.flatMap(order -> order.getLineItems().stream())...
+
+If path is the path to a file, then the following produces a stream of the words contained in that file:
+
+     Stream<String> lines = Files.lines(path, StandardCharsets.UTF_8);
+     Stream<String> words = lines.flatMap(line -> Stream.of(line.split(" +")));
+
+The mapper function passed to flatMap splits a line, using a simple regular expression, into an array of words, and
+then creates a stream of words from that array.
+
+In a nutshell, flatMap lets you replace each value of a stream with another stream, and then it concatenates
+all the generated streams into one single stream.
+
+
+collect
+-------
+
+The argument passed to collect is an object of type java .util.stream.Collector. What does a Collector object do? It essentially describes a
+recipe for accumulating the elements of a stream into a final result. The factory method Collectors.toList() used earlier returns a Collector
+ describing how to accumulate a stream into a list
+
+
+
+
