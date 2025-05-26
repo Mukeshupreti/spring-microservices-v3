@@ -34,12 +34,15 @@ public class ApartmentBuilder {
 
   public Aparment build() {
     Aparment ap = new Aparment(sqm, rooms, city, area, kitchen);
+    resetbuilder();
+    return ap;
+  }
+  void resetbuilder(){
     sqm = -1;
     rooms = -1;
     city = "";
     area = "";
     kitchen = false;
-    return ap;
   }
 
 }
