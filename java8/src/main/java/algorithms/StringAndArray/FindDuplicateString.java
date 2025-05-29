@@ -2,6 +2,7 @@ package algorithms.StringAndArray;
 
 public class FindDuplicateString {
     public static void main(String[] args) {
+        // find duplicate charater in the string
         String str = "programming";
         int[] charCount = new int[256];  // ASCII limit
 
