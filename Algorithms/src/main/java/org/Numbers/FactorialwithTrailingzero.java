@@ -1,4 +1,4 @@
-package algorithms.Numbers;
+package org.Numbers;
 
 import java.util.Scanner;
 // url: https://leetcode.com/problems/factorial-trailing-zeroes/
@@ -9,11 +9,12 @@ public class FactorialwithTrailingzero {
         System.out.println("Please Enter a number");
         int number = scanner.nextInt();
         int factorial = calculateFatorial(number);
-        myway(factorial);
-        //efficientWay(number);
+        //myway(factorial);
+       // efficientWay(number);
     }
 
-    // find number of five (5*2) which contriubute for making 10 (zero)
+    // find number of five (5*2) which contriubute for making 10 (zero) ( because number of 2 is always more than
+    //5 so if you get number of 5 that will be sufficient
     // you will get number of 5 by dividing number by 5 and its power of 5;
 
     private static void efficientWay(int number) {
@@ -31,7 +32,7 @@ public class FactorialwithTrailingzero {
             System.out.println("efficientWay :no zero");
         }
     }
-
+    // not efficient even not work for bigger than 10 fatorian
     private static void myway(int factorian) {
         if (factorian % 10 == 0) {
             System.out.println("it have trailing zero");
@@ -45,7 +46,6 @@ public class FactorialwithTrailingzero {
             System.out.println("no zero");
         }
     }
-
     private static int calculateFatorial(int number) {
         if (number == 0) {
             return 0;
