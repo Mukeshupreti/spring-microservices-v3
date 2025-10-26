@@ -1,26 +1,31 @@
 package org.String;
+//https://leetcode.com/problems/repeated-dna-sequences/description/
+/*
+The DNA sequence is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'.
 
-/*Repeated DNA Sequences
-Given a string s representing a DNA sequence, return all distinct 10-character long sequences (substrings) that appear more than once in the string. The result should include all repeated sequences, and the order doesn't matter.
+        For example, "ACGAATTCCG" is a DNA sequence.
+        When studying DNA, it is useful to identify repeated sequences within the DNA.
 
-The string s contains only the nucleotides: 'A', 'C', 'G', and 'T'. For example, "ACGAATTCCG" is a valid DNA sequence.
+        Given a string s that represents a DNA sequence, return all the 10-letter-long sequences (substrings)
+        that occur more than once in a DNA molecule. You may return the answer in any order.
+
+
 
         Example 1:
-Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
-Output: ["AAAAACCCCC", "CCCCCAAAAA"]
 
-Example 2:
-Input: s = "AAAAAAAAAAAAA"
-Output: ["AAAAAAAAAA"]{
+        Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+        Output: ["AAAAACCCCC","CCCCCAAAAA"]
+        Example 2:
 
-Constraints:
+        Input: s = "AAAAAAAAAAAAA"
+        Output: ["AAAAAAAAAA"]
 
-The length of the string s is between 1 and 100,000.
 
-Each character in s is either 'A', 'C', 'G', or 'T'.*/
+        Constraints:
 
-/*Solution :  get list of all the 10 length possible sequence and use Hashmap or Hashset to get
-duplicate sequence and collect in the list*/
+        1 <= s.length <= 105
+        s[i] is either 'A', 'C', 'G', or 'T'.
+*/
 
 
 import java.util.*;
