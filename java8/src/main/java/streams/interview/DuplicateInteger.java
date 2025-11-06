@@ -3,7 +3,8 @@ package streams.interview;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+// add streamed elment from collection and add in hash set where it return false
+//print the number
 public class DuplicateInteger {
     // find duplicate integer
     public static void main(String[] args) {

@@ -6,5 +6,7 @@ public class CharacterOccuranceCounter {
     public static void main(String[] args) {
         
     String input="programming";
+
+
     }
 }

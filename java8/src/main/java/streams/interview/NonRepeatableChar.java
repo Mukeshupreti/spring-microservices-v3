@@ -6,10 +6,11 @@ import java.util.stream.Collectors;
 
 /*Given an array of strings, find the first character that does not repeat across all strings.
         Example:
-Input: ["apple", "banana", "cherry"] → Output: 'p'*/
+    Input: ["apple", "banana", "cherry"] → Output: 'p'*/
 public class NonRepeatableChar {
     public static void main(String[] args) {
-    
+    List<String> input= List.of("apple", "banana", "cherry");
+
     }
     
 }

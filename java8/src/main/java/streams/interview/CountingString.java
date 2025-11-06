@@ -14,4 +14,7 @@ public class CountingString {
         long count = names.stream().filter(name -> name.startsWith("A")).count();
         System.out.println(count);
     }
+
+
+
 }
