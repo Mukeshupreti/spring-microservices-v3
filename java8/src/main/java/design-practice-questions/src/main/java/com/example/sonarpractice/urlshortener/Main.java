@@ -1,27 +1,36 @@
 package com.example.sonarpractice.urlshortener;
+
 import java.util.*;
+import java.security.MessageDigest;
+
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("URL Shortener demo:");
-        UrlShortener s = new UrlShortener();
-        String shortUrl = s.shorten("https://example.com/very/long/url");
-        System.out.println("Short: " + shortUrl);
-        System.out.println("Expand: " + s.expand(shortUrl));
+    public static void main(String[] args) throws Exception {
+        URLShortenerService s = new URLShortenerService();
+        String short1 = s.shorten("https://openai.com/blog/");
+        System.out.println("Short: " + short1);
+        System.out.println("Expand: " + s.expand(short1));
     }
 }
-class UrlShortener {
-    private final Map<String,String> map = new HashMap<>();
-    private final Map<String,String> rev = new HashMap<>();
-    private int counter = 1;
-    public String shorten(String url) {
-        if (rev.containsKey(url)) return rev.get(url);
-        String code = Integer.toHexString(counter++);
-        map.put(code, url);
-        rev.put(url, code);
+
+class URLShortenerService {
+    private final Map<String,String> codeToUrl = new HashMap<>();
+    private final Map<String,String> urlToCode = new HashMap<>();
+    public String shorten(String url){
+        if(urlToCode.containsKey(url)) return urlToCode.get(url);
+        String code = generate(url);
+        codeToUrl.put(code, url);
+        urlToCode.put(url, code);
         return "http://short/" + code;
     }
-    public String expand(String shortUrl) {
+    public String expand(String shortUrl){
         String code = shortUrl.substring(shortUrl.lastIndexOf('/')+1);
-        return map.get(code);
+        return codeToUrl.get(code);
+    }
+    private String generate(String url){
+        try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hash = md.digest((url + System.nanoTime()).getBytes());
+            return Base64.getUrlEncoder().withoutPadding().encodeToString(Arrays.copyOf(hash,6));
+        }catch(Exception e){ return Integer.toHexString(url.hashCode()); }
     }
 }
