@@ -76,6 +76,7 @@ class UserServiceTest {
     // here three instances of test will rum with difference input
     @ParameterizedTest
     @ValueSource(strings = {"bob", "john", "mark"})
+/*    Purpose: Pass a single array of values to the test method|Supports: primitives, Strings, classes.*/
     void testAddUser_MultipleValues(String name) {
         service.addUser(name);
         verify(repository).save(name);
@@ -83,6 +84,7 @@ class UserServiceTest {
 
     // ------- Parameterized - CSV -------
     @ParameterizedTest
+//    Purpose: Pass multiple sets of arguments to the test method.
     @CsvSource({
         "sam, true",
         "kate, true",
@@ -109,14 +111,21 @@ class UserServiceTest {
         Thread.sleep(100);
         Assertions.assertTrue(true);
     }
-
+/*✅ What it does
+    Runs the same test multiple times.
+    Here, the test repeatedTest() will run 3 times automatically.
+    Useful for:
+    Testing flaky code or non-deterministic behavior.
+    Ensuring a method behaves correctly under repeated execution.*/
     // ------- Repeated Test -------
     @RepeatedTest(3)
     void repeatedTest() {
         spyList.add("x");
         Assertions.assertTrue(spyList.size() > 0);
     }
-
+ /*   Groups related tests together inside a nested class.
+    Improves readability and logical grouping of tests.
+    Can have its own @BeforeEach / @AfterEach methods inside the nested class.*/
     // ------- Nested Test -------
     @Nested
     class NestedGroup {

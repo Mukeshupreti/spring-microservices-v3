@@ -61,22 +61,22 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 # ✅ JUnit 5 + Mockito Cheat Sheet
 
 ## ✅ JUnit 5 Annotations
-| Annotation | Purpose |
-|------------|---------|
-| `@Test` | Marks a test method |
-| `@BeforeEach` | Runs before each test (init state) |
-| `@AfterEach` | Runs after each test (cleanup) |
-| `@BeforeAll` | Runs once before all tests (**static**) |
-| `@AfterAll` | Runs once after all tests (**static**) |
-| `@DisplayName` | Sets readable test name |
-| `@Disabled` | Skips test |
+| Annotation           | Purpose |
+|----------------------|---------|
+| `@Test`              | Marks a test method |
+| `@BeforeEach`        | Runs before each test (init state) |
+| `@AfterEach`         | Runs after each test (cleanup) |
+| `@BeforeAll`         | Runs once before all tests (**static**) |
+| `@AfterAll`          | Runs once after all tests (**static**) |
+| `@DisplayName`       | Sets readable test name |
+| `@Disabled`          | Skips test |
 | `@ParameterizedTest` | Runs same test with different inputs |
-| `@ValueSource` | Parameterized source (ints, strings, etc.) |
-| `@CsvSource` | Multiple params per invocation |
-| `@Nested` | Groups logical test cases |
-| `@Tag` | Category tag (unit, slow, integration) |
-| `@Timeout` | Test must finish within time |
-| `@RepeatedTest` | Run same test multiple times |
+| `@ValueSource`       | Parameterized source (ints, strings, etc.) |
+| `@CsvSource`         | Multiple params per invocation | 
+| `@Nested`            | Groups logical test cases |
+| `@Tag`               | Category tag (unit, slow, integration) |
+| `@Timeout`           | Test must finish within time |
+| `@RepeatedTest`      | Run same test multiple times |
 
 ---
 
