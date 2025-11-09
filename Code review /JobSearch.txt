@@ -102,6 +102,8 @@ for each (n) auther you have to execute query to get there book
 SELECT * FROM Author;
 not for each other (n author)
 SELECT * FROM Book WHERE author_id = ?;
+
+
 This is n problem to solve this use join
 SELECT a.*, b.*
 FROM Author a

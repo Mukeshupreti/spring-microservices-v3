@@ -1,5 +1,7 @@
 package streams.majorMethods.option;
 
+import java.util.Optional;
+
 public class OptionExplore {
 
  /*   Optional.of(value)         // Creates an Optional with a non-null value (throws if null)
@@ -27,9 +29,35 @@ public class OptionExplore {
     void ifPresentOrElse(Consumer<? super T>, Runnable)  // Executes one of two actions (Java 9+)*/
 
     public static void main(String[] args) {
-
+     nullPointercheck();
     }
 
+    private static void nullPointercheck() {
+        String text=null;
+        cases(text);// nothing printed as object is null
+         text="abc";
+        cases(text);
+    }
+
+    private static void cases(String text) {
+//        Optional.of(text);// this will throw null pointer when text is null
+        // better way
+        Optional optional = Optional.ofNullable(text);
+
+      /*  if (optional.isPresent()) {
+            System.out.println(optional.get());
+        }*/
+//   better way
+        optional.ifPresent(value -> System.out.println(value));
+        //orElse(null)- return value if present else return null.
+/*        T orElse(T other)                    // Returns value if present, otherwise returns other
+        T orElseGet(Supplier<? extends T>)  // Same as above but lazily evaluated
+                T orElseThrow()                     // Throws NoSuchElementException if not present
+        T orElseThrow(Supplier<? extends X> exceptionSupplier) // Custom exception*/
+
+        String value= String.valueOf(optional.orElse(null));
+        System.out.println(value);
+    }
 
 
 }

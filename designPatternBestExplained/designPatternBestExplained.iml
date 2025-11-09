@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained">
+      <sourceFolder url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained/BridgePattern" isTestSource="false" packagePrefix="bridge" />
+      <sourceFolder url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained/FlyweightPattern" isTestSource="false" packagePrefix="flyweight" />
+      <sourceFolder url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained/IteratorPattern" isTestSource="false" packagePrefix="com.balazsholczer.designpatterns" />
+      <sourceFolder url="file://$USER_HOME$/IdeaProjects/spring-microservices-v3/designPatternBestExplained/VisitorPattern" isTestSource="false" packagePrefix="visitor" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="JavaSolidMVC" />
+  </component>
+</module>

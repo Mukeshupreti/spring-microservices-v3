@@ -9,8 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.*;
+
 
 public class AllInOne {
     static List<Transaction> transactions;
@@ -31,45 +30,45 @@ public class AllInOne {
         ///Q1: given a list of word you have to get map (letter,count(letter)
         //letterCounter();
 
-        ///Q2: given a list of lines get count of world
-        // wordCounter();
+        ///Q2: given a (list of lines) get count of word
+         //wordCounter();
 
         ///Q3: given a list of world get all unique letters
-        // getAllUniqueCharacter();
+        //getAllUniqueCharacter();
 
         ///Q4: different way of building streams Arrays.stream(numbers); Stream.of
         //buildingStreams();
         ///Q5: given transactions list you have to create map of (transactionId , value)
-        // convertTransactionListToMap();
+       // convertTransactionListToMap();
         ///Q6: collection methods
         //CollectorsMethods();
 
-
-        //limitFunction();
-
-        //reduceMethod();
-
-
-        ifPresentOfOptional();
+        //Q6.
+//        limitFunction();
+        //Q7.
+//        reduceMethod();
 
 
-        //maptoIntFunction();
+//        ifPresentOfOptional();
+
+
+//        maptoIntFunction();
 
 
         //uniqueWordInFile();
 
 
-        // findingMaxTransaction();
+//         findingMaxTransaction();
 
-        //
+        // expesive transaction means value is greater than 1000
 
-        //expensiveTransaction();
+//        expensiveTransaction();
 
-        //getExpensivecity();
+//        getExpensivecity();
 
-        //getExpensivecityV2();
+//        getExpensivecityV2();
 
-        //howManyTransactions();
+        howManyTransactions();
 
         //totalValue();
 
@@ -102,7 +101,7 @@ public class AllInOne {
     }
 
     private static void convertTransactionListToMap() {
-        Map<Integer, Integer> mapofCityandValue = transactions.stream().collect(toMap(Transaction::getId, Transaction::getValue));
+        Map<Integer, Integer> mapofCityandValue = transactions.stream().collect(Collectors.toMap(Transaction::getId, Transaction::getValue));
         System.out.println("mapofCityandValue" + mapofCityandValue);
     }
 
@@ -118,7 +117,7 @@ public class AllInOne {
                 transactions.stream()
                         .filter(t -> t.getValue() > 1000)
                         .map(Transaction::getCity)
-                        .collect(toSet());
+                        .collect(Collectors.toSet());
 
         System.out.println("expesive city >1000 -->" + cities);
 
@@ -129,7 +128,7 @@ public class AllInOne {
                         .filter(t -> t.getValue() > 1000)
                         .map(Transaction::getCity)
                         //toCollection take supplier  T get()
-                        .collect(toCollection(HashSet::new));
+                        .collect(Collectors.toCollection(HashSet::new));
 
 /*        toCollection(HashSet::new) / toCollection(Treeset::new)
         is equivalent to:
@@ -143,7 +142,7 @@ public class AllInOne {
 
         System.out.println(" ---------------------------------");
         Map<String, List<Transaction>> transactionsByCurrencies =
-                transactions.stream().collect(groupingBy(
+                transactions.stream().collect(Collectors.groupingBy(
                         Transaction::getCurrency));
         System.out.println("transactionsByCurrencies " + transactionsByCurrencies);
         System.out.println(" ---------------------------------");
@@ -169,23 +168,23 @@ public class AllInOne {
         /// VVIMP :groupBY( function ,return collector), groupby return collecor
         /// get map of (city,sum of transaction)
         Map<String, Integer> cityToSum =
-                transactions.stream().collect(groupingBy(
-                        Transaction::getCity, summingInt(Transaction::getValue)));
+                transactions.stream().collect(Collectors.groupingBy(
+                        Transaction::getCity, Collectors.summingInt(Transaction::getValue)));
         System.out.println(" each city transaction sum " + cityToSum);
         System.out.println(" ---------------------------------");
 /// Each city map(city,highest_transaction)
         Map<String, Optional<Transaction>> cityToHighestTransaction =
-                transactions.stream().collect(groupingBy(
-                        Transaction::getCity, maxBy(Comparator.comparing(Transaction::getValue))));
+                transactions.stream().collect(Collectors.groupingBy(
+                        Transaction::getCity, Collectors.maxBy(Comparator.comparing(Transaction::getValue))));
 
         System.out.println(" city and highest transaction map " + cityToHighestTransaction);
         System.out.println(" ---------------------------------");
 
         System.out.println("EXCITING");
         Map<String, Map<String, Double>> cityByCurrencyToAverage =
-                transactions.stream().collect(groupingBy(Transaction::getCity,
-                        groupingBy(Transaction::getCity,
-                                averagingInt(Transaction::getValue))
+                transactions.stream().collect(Collectors.groupingBy(Transaction::getCity,
+                        Collectors.groupingBy(Transaction::getCity,
+                                Collectors.averagingInt(Transaction::getValue))
                 ));
         System.out.println("" + cityByCurrencyToAverage);
         System.out.println(" ---------------------------------");
@@ -262,7 +261,8 @@ public class AllInOne {
         System.out.println("limitFunction");
         int statementSum =
                 transactions.stream()
-                        .mapToInt(Transaction::getValue)
+                        //IntStream mapToInt(ToIntFunction<? super T> mapper);
+                        .mapToInt(Transaction::getValue)///  return insStream
                         .sum(); //works!
         System.out.println(statementSum);
 
@@ -276,7 +276,7 @@ public class AllInOne {
 
     private static void reduceMethod() {
         System.out.println("limitFunction");
-        List<Integer> numbers = asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
         // Optional<T> reduce(BinaryOperator<T> accumulator) -without identity it return optional
         //T reduce(T identity, BinaryOperator<T> accumulator) -- identity value is starting point
         int product = numbers.stream().reduce(1, (a, b) -> a * b);
@@ -293,7 +293,7 @@ public class AllInOne {
 
     private static void limitFunction() {
         System.out.println("limitFunction");
-        List<Integer> numbers = asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
 
         numbers.stream()
                 .filter(n -> {
@@ -316,10 +316,10 @@ public class AllInOne {
         System.out.println("letterCounter");
 
         Stream<String> words = Stream.of("Java", "Magazine", "is", "the", "best");
-
+// stream(array, 0, array.length)
         Map<String, Long> letterToCount = words.map(w -> w.split(""))// this will return 5 arrays of characters
                 .flatMap(Arrays::stream)// make one array from 5 array of characters
-                .collect(groupingBy(Function.identity(), Collectors.counting()));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
    /*     groupingBy(...) is a collector that creates a Map<K, V> where:
 
         K is the grouping key

@@ -116,6 +116,11 @@ Returns the minimum or maximum element, based on a comparator.
 
 Optional<String> min = list.stream()
                            .min(Comparator.naturalOrder());
+
+transactions.stream().max((t1, t2) -> t1.getValue() - t2.getValue()).ifPresent(System.out::println);
+
+// equivalent way.
+transactions.stream().max(Comparator.comparing(Transaction::getValue)).ifPresent(System.out::println);
 ## 11. toArray()
 Converts the stream into an array.
 
@@ -145,4 +150,31 @@ findFirst()	Get the first element (Optional)
 findAny()	Get any element (Optional)  
 min()/max()	Get the minimum/maximum element  
 toArray()	Convert the stream into an array  
+
+## flatmap syntex
+Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper) 
+takes T as input and return Stream of R
+
+public static <T> Stream<T> stream(T[] array) {
+return stream(array, 0, array.length);
+}
+
+Stream is default method in Collection interface. but Arrays is not collection for utility 
+
+flatMap require a funtion which 
+
+
+        Map<String, Optional<Transaction>> cityToHighestTransaction =
+                transactions.stream().collect(Collectors.groupingBy(
+                        Transaction::getCity, Collectors.maxBy(Comparator.comparing(Transaction::getValue))));
+
+        System.out.println(" city and highest transaction map " + cityToHighestTransaction);
+        System.out.println(" ---------------------------------");
+
+        System.out.println("EXCITING");
+        Map<String, Map<String, Double>> cityByCurrencyToAverage =
+                transactions.stream().collect(Collectors.groupingBy(Transaction::getCity,
+                        Collectors.groupingBy(Transaction::getCity,
+                                Collectors.averagingInt(Transaction::getValue))
+                ));
 
