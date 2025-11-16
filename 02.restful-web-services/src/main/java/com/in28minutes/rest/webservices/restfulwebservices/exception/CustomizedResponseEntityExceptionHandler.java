@@ -13,23 +13,41 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.in28minutes.rest.webservices.restfulwebservices.user.UserNotFoundException;
+//@ControllerAdvice + @ResponseBody = @RestControllerAdvice
 
+/*@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseBody
+    public ErrorResponse handle(RuntimeException ex) {
+        return new ErrorResponse(ex.getMessage());
+    }
+}*/
 @RestControllerAdvice
-public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
+public class CustomizedResponseEntityExceptionHandler
+        extends ResponseEntityExceptionHandler //this is not nessary to extend untill you need to have something from there
+{
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest request) throws Exception {
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
-	@ExceptionHandler(UserNotFoundException.class)
-	public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
-		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
-		
-		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
-		
-	}
+// This is also fine implementaion
+//	@ExceptionHandler(UserNotFoundException.class)
+//	public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex, WebRequest request) throws Exception {
+//		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+//
+//		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+//
+//	}
+    ///
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handle(UserNotFoundException ex) {
+        ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(),null);
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 	//MethodArgumentNotValidException have ex.getErrorCount(),ex.getFieldError().getDefaultMessage()
 	//request.getDescription(false) get /uri
 	@Override

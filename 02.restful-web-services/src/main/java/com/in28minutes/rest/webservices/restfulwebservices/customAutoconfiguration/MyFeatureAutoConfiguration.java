@@ -1,6 +1,6 @@
-package com.example.learnspringsecuirty.config;
+package com.in28minutes.rest.webservices.restfulwebservices.customAutoconfiguration;
 
-import com.example.learnspringsecuirty.controllers.MyService;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ autoconfiguration only when the property is set to true eg  "my.feature.enabled"
 Step 2: put you configuration in spring.factories to register you configuration
 eg :
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.example.learnspringsecuirty.config.MyFeatureAutoConfiguration
+com.in28minutes.rest.webservices.restfulwebservices.customAutoconfiguration.MyFeatureAutoConfiguration
 
 Step 3 : enable property my.feature.enabled=true
 

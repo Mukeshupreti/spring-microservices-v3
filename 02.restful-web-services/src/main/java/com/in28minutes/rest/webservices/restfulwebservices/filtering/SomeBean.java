@@ -11,7 +11,7 @@ public class SomeBean {
 	
 	private String field2;
 
-	//@JsonIgnore
+	//@JsonIgnore // this static filtering
 	private String field3;
 
 	public SomeBean(String field1, String field2, String field3) {

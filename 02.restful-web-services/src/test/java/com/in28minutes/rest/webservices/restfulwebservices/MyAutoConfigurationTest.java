@@ -1,6 +1,6 @@
-package com.example.learnspringsecuirty;
+package com.in28minutes.rest.webservices.restfulwebservices;
 
-import com.example.learnspringsecuirty.controllers.MyService;
+import com.in28minutes.rest.webservices.restfulwebservices.customAutoconfiguration.MyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

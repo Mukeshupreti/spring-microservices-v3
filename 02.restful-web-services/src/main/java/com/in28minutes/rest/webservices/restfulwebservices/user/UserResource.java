@@ -24,6 +24,7 @@ public class UserResource {
 
 	private UserDaoService service;
 
+
 	//Accept (response body): application/xml  :Tells the server the format the client expects in the response.
 	//Content-Type  (request body): application/xml :Tells the server the format of the data being sent in the HTTP request body.
 

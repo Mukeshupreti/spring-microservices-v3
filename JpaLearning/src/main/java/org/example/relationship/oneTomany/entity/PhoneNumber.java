@@ -7,23 +7,16 @@ public class PhoneNumber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String number;
-
     private String type;
-
-
     /*
-
     create table phone_number(
                              id int PRIMARY KEY AUTO_INCREMENT,
                              customer_id int,
                              number varchar(20),
                              type varchar(20),
                              FOREIGN KEY (customer_id)
-                                 REFERENCES customer(id)
-)
-
+                                 REFERENCES customer(id))
      */
     @ManyToOne
     @JoinColumn(name = "customer_id") // customer_id is foreign key ,

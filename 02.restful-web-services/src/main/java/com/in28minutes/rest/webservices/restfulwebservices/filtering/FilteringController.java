@@ -4,15 +4,27 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-// MappingJacksonValue.setFilter(FilterProvider)
-// MappingJacksonValue(Object to be filter filer)
-//
+// Step 0: Register the bean to filter here (somebean) with the name @JsonFilter(""SomeBeanFilter1")
+//Step 1 : create filter using SimpleBeanPropertyFilter  and  in Filter provider (("SomeBeanFilter1")
+//step 2 :  MappingJacksonValue : set Filterprovider and object to be filter
+//Step 3: return MappingJacksonValue (will be filterd record)
+
+//-- set bean to filter as value and set filter
+//public class MappingJacksonValue {
+//    private Object value;
+//    @Nullable
+//    private Class<?> serializationView;
+//    @Nullable
+//    private FilterProvider filters;
+
+
 @RestController
 public class FilteringController {
 	// output:
@@ -30,7 +42,8 @@ public class FilteringController {
 		SimpleBeanPropertyFilter filter = 
 				SimpleBeanPropertyFilter.filterOutAllExcept("field1","field3"); // filter out field2
 
-		// add filter in filter provider this id SomeBeanFilter1 you have assign at somebean @JsonFilter("SomeBeanFilter1")
+		// add filter in filter provider this id SomeBeanFilter1
+        // register the bean(id: SomeBeanFilter1) with @JsonFilter("SomeBeanFilter1")
 		// this is linking between filter and your somebean
 		FilterProvider filters = 
 				new SimpleFilterProvider().addFilter("SomeBeanFilter1", filter );

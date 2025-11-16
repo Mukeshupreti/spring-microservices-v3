@@ -8,16 +8,7 @@ public class License {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String type;
-    @Temporal(TemporalType.DATE)
-    private Date validFrom;
-    @Temporal(TemporalType.DATE)
-    private  Date validTo;
-
-
     /**
-     *
      * create table license(
      *                         id int PRIMARY KEY AUTO_INCREMENT,
      *                         type varchar(20),
@@ -34,6 +25,13 @@ public class License {
     @OneToOne (cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
     @JoinColumn(name ="person_id")
     private Person person;
+
+    private String type;
+    @Temporal(TemporalType.DATE)
+    private Date validFrom;
+    @Temporal(TemporalType.DATE)
+    private  Date validTo;
+
 
     public void setId(Long id) {
         this.id = id;

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.example.learnspringsecuirty.config.MyFeatureAutoConfiguration
+com.in28minutes.rest.webservices.restfulwebservices.customAutoconfiguration.MyFeatureAutoConfiguration

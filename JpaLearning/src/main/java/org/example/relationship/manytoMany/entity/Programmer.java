@@ -12,12 +12,9 @@ public class Programmer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private int salary;
-
     /*
-
     create table programmers_projects(
                                      programmer_id int,
                                      project_id int,
@@ -26,11 +23,7 @@ public class Programmer {
                                      FOREIGN KEY (project_id)
                                          REFERENCES project(id)
 )
-
-
-
      */
-
     @ManyToMany(cascade = CascadeType.ALL,
      fetch = FetchType.EAGER)
     @JoinTable( name="programmers_projects",

@@ -7,12 +7,12 @@ public class Student {
 	private final String university;
         // optional parameter
 	private final int age;
-	
-	public Student(Builder builder){
-		this.name = builder.name;
-		this.university = builder.university;
-		this.age = builder.age;
-	}
+    // It's common to prevent direct instantiation: so make construtur private.
+    private Student(Builder builder) {
+        this.name = builder.name;
+        this.university = builder.university;
+        this.age = builder.age;
+    }
 	
 	public static class Builder {
 		
@@ -24,8 +24,8 @@ public class Student {
 			this.name = name;
 			this.university = university;
 		}
-		
-		public Builder setAge(int age){
+        //Rename setAge → age Builder methods usually avoid “set”, because it's fluent, not a setter:
+		public Builder age(int age){
 			this.age = age;
 			return this;
 		}
@@ -39,4 +39,11 @@ public class Student {
 	public String toString() {
 		return this.name+"-"+this.university+"-"+this.age;
 	}
+
+    public static void main() {
+        // here Builder is staic inner class and you are creating instance of Builder class from Student
+        Student student=new Student.Builder("name","university").age(19)
+                .build();
+        System.out.println(student);
+    }
 }
