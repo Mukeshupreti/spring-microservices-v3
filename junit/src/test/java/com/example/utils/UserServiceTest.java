@@ -1,16 +1,39 @@
 package com.example.utils;
 
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.*;
+
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
 
 import static org.mockito.Mockito.verify;
+
+
 
 @ExtendWith(MockitoExtension.class)// enable Mockito in junit5
 @Tag("unit")
@@ -35,6 +58,10 @@ class UserServiceTest {
     static void setupAll() {
         System.out.println("== Runs once before all tests ==");
     }
+    @AfterAll
+    static void cleanupAll() {
+        System.out.println("== Runs once after all tests ==");
+    }
 
     @BeforeEach
     void setup() {
@@ -46,10 +73,7 @@ class UserServiceTest {
         System.out.println("== Runs after each test ==");
     }
 
-    @AfterAll
-    static void cleanupAll() {
-        System.out.println("== Runs once after all tests ==");
-    }
+
 
     // ------- Basic Test -------
     @Test
@@ -60,7 +84,7 @@ class UserServiceTest {
         Checks that the method save(...) was called on repository
         Captures the argument passed to that save(...) call and stores it in nameCaptor
 ✅       So after this line runs, nameCaptor.getValue() will return the argument used in repository.save(...).*/
-        verify(repository).save(nameCaptor.capture());
+        Mockito.verify(repository).save(nameCaptor.capture());
         System.out.println("after "+nameCaptor.getValue() );
         Assertions.assertEquals("alice", nameCaptor.getValue());
     }
@@ -79,7 +103,7 @@ class UserServiceTest {
 /*    Purpose: Pass a single array of values to the test method|Supports: primitives, Strings, classes.*/
     void testAddUser_MultipleValues(String name) {
         service.addUser(name);
-        verify(repository).save(name);
+        Mockito.verify(repository).save(name);
     }
 
     // ------- Parameterized - CSV -------
@@ -99,6 +123,8 @@ class UserServiceTest {
     void testExceptionThrown() {
         Mockito.doThrow(new IllegalArgumentException())
                 .when(repository).save(null);
+        // this works for non-void methods
+        //Mockito.when(repository.save(null)).thenThrow(IllegalArgumentException); -
 
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> service.addUser(null));
