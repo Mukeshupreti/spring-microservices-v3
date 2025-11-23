@@ -231,3 +231,31 @@ class UserService {
 interface UserRepository {
     void save(String name);
 }
+```
+
+Extra, 
+@ParameteriziedTest
+@Messagesource() -multiple input can be passed in test or @Displayname
+@csvsource()
+@csvfileSource()
+@valueSource() -set of input you can pass of same type (string, byte...etc)
+
+
+@RepeatedTest(3)
+
+@TestMethodOrder()  // will be help for integration test where you need certain order execution for test case. class level
+@order -- method level as well class level
+Defining method or class order execution in property file
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
+@TestInstance(TestInstance.Lifecycle.PER_METHOD) // defult configuration
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // one instance of test classes for all test cases so that they can share state. good for integration test.
+In this case @BeforeALL @AfterAll method not need to be static as only once test class instance for all test cases.
+
+maven plugin to genrate report in test phase.
+there is two plugin to geneate report using maven surefire report plugin or jacoco(java code coverage) plugin.
+![img_7.png](img_7.png)
+target/site/surefirereoport.html geneate report by surefire
+![img_8.png](img_8.png)
+target/site/report/jacoco/ report generate
