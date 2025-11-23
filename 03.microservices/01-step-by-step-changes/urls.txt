@@ -21,3 +21,27 @@ http://localhost:8765/currency-exchange/from/USD/to/INR
 http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
 http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
 http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+
+##### Running application instance with different property
+-----------------------------------------------------------
+1 . mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=9090"
+2. java -jar target/app.jar --server.port=9090
+
+3. with Intellij
+-Dserver.port=9090
+
+4. Use different Spring Profiles (clean & reusable)
+     application-dev.properties
+         server.port=8081
+
+     application-test.properties
+         server.port=8082
+
+        then
+        Run the app with desired profile:
+        java -jar app.jar --spring.profiles.active=dev
+
+
+        or in IntelliJ set:
+
+        --spring.profiles.active=dev

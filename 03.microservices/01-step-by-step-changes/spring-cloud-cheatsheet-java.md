@@ -1,7 +1,80 @@
 # Spring Cloud Microservices – Complete Cheat Sheet (with Java Code)
 
----
 
+
+## Running application instance with different property
+-------------------------------------------------------
+1. mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=9090"
+2. java -jar target/app.jar --server.port=9090
+
+3. with Intellij
+   -Dserver.port=9090
+
+4. Use different Spring Profiles (clean & reusable)
+   application-dev.properties
+   server.port=8081
+
+   application-test.properties
+   server.port=8082
+
+        then
+        Run the app with desired profile:
+        java -jar app.jar --spring.profiles.active=dev
+
+
+        or in IntelliJ set:
+
+        --spring.profiles.active=dev
+-----
+
+quick :
+resilence4J
+-----------------
+
+```<dependency>
+  <groupId>io.github.resilience4j</groupId>
+  <artifactId>resilience4j-spring-boot2</artifactId>
+</dependency>
+
+resilience4j.retry.instances.
+                            sample-api.maxAttempts=5
+                            sample-api.waitDuration=1s
+                            sample-api.enableExponentialBackoff=true
+                            sample-api.maxConcurrentCalls=10
+                            default.limitForPeriod=2
+                            default.limitRefreshPeriod=10s
+
+```
+Eureka client
+--------------------
+
+eureka.client.
+              serviceUrl.defaultZone
+              register-with-eureka=false
+
+
+API gateway
+------------------
+
+```
+spring.cloud.gateway.discovery.locator.
+                                           enabled=true
+                                         lowerCaseServiceId=true
+                                      fetch-registry=false
+
+``` 
+### FeignClient
+
+------------------------------	
+```
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-openfeign</artifactI
+
+@FeignClient(name="currency-exchange")
+```
+
+																   
+-------
 ### 1. Config Server
 ```xml
 <parent>
@@ -158,7 +231,7 @@ limits-service.maximum=993
 ```
 
 ---
-
+![img_7.png](img_7.png)
 ## 4. Currency Exchange Service
 
 **CurrencyExchange.java**
@@ -326,7 +399,7 @@ public class CurrencyConversionController {
 
 ---
 
-## 6. Feign Client
+## 6. Feign Client (should be inside currency conversion service)
 
 **pom.xml dependency**
 ```xml
@@ -344,7 +417,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="currency-exchange")
+@FeignClient(name="currency-exchange") // This should be name of application
+// note: this is interface
 public interface CurrencyExchangeProxy {
 
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
@@ -371,7 +445,7 @@ public CurrencyConversion calculateCurrencyConversionFeign(
         @PathVariable String from,
         @PathVariable String to,
         @PathVariable BigDecimal quantity) {
-
+    // calling feign client here
     CurrencyConversion currencyConversion = proxy.retrieveExchangeValue(from, to);
 
     return new CurrencyConversion(currencyConversion.getId(),
@@ -419,11 +493,31 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 spring.application.name=api-gateway
 server.port=8765
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+##Enable dynamic route generation from service registry
+##If Eureka has a service called USER-SERVICE, then Gateway automatically adds a route:
+##/USER-SERVICE/** → lb://USER-SERVICE
+##This removes the need to manually define routes in application.yml.
 spring.cloud.gateway.discovery.locator.enabled=true
+##Generate route paths in lowercase (e.g., /user-service/**)
 spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ```
 
 **ApiGatewayConfiguration.java**
+### API GATEWAY
+``` 
+http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
+http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10
+http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+http://localhost:8765/currency-exchange/currency-exchange/from/USD/to/INR
+http://localhost:8765/currency-conversion/currency-conversion/from/USD/to/INR/quantity/10
+http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+http://localhost:8765/currency-exchange/from/USD/to/INR
+http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+```
 ```java
 package com.in28minutes.microservices.apigateway;
 
@@ -509,11 +603,19 @@ import io.github.resilience4j.retry.annotation.Retry;
 @RestController
 public class CircuitBreakerController {
 
+
     @GetMapping("/sample-api")
-    @Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
+    //@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
+    //@CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+    //@RateLimiter(name="default") // number of request per second
+    @Bulkhead(name="sample-api") // number of concurrent reqs per second
+    //10s => 10000 calls to the sample api
     public String sampleApi() {
-        // simulate call to another service
-        return new RestTemplate().getForObject("http://localhost:8080/some-dummy-url", String.class);
+        logger.info("Sample api call received");
+//		ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url", 
+//					String.class);
+//		return forEntity.getBody();
+        return "sample-api";
     }
 
     public String hardcodedResponse(Exception ex) {

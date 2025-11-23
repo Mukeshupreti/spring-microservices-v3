@@ -470,5 +470,22 @@ curl -s http://localhost:8080/learn-rest/manage | jq | grep "href"
 "href": "http://localhost:8080/learn-rest/manage/mappings"
 ````
 
+###  convert one object to other class object
+```java 
+	    UserDto user = new UserDto();
+	    ModelMapper modelMapper = new ModelMapper();
+        UserEntity userEntity = modelMapper.map(user, UserEntity.class);
+```        
+#### convert string to object (read string as object)
+``` java 
+		 String responseBodyAsString = mvcResult.getResponse().getContentAsStrin();
+        UserRest createdUser = new ObjectMapper().readValue(responseBodyAsString, UserRest.class);
+```
+###  object to string (write object as string)	
+ ``` java 	
+		new ObjectMapper().writeValueAsString(userDetailsRequestModel)		
+```
+	
+
 
 
