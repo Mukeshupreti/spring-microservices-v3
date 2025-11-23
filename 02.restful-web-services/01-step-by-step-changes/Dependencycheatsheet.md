@@ -258,6 +258,9 @@ management.endpoints.web.base-path=/manage
 ### logging
 ```
 logging.level.org.springframework=info
+
+--MDC (from org.slf4j.MDC) in filter we put user id (userID) to show in logger
+logging.pattern.level=%5p [${spring.application.name:},%X{userID:-} %X{traceId:-},%X{spanId:-}]
 ```
 ### application
 ```
