@@ -69,6 +69,9 @@ eureka.client.
               serviceUrl.defaultZone
               register-with-eureka=false
 
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+
 
 API gateway
 ------------------
