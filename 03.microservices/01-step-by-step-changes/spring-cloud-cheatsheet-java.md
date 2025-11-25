@@ -44,6 +44,18 @@ resilience4j.retry.instances.
                             default.limitForPeriod=2
                             default.limitRefreshPeriod=10s
 
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
+
+resilience4j.retry.instances.sample-api.waitDuration=1s
+resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
+#resilience4j.circuitbreaker.instances.default.failureRateThreshold=90
+resilience4j.ratelimiter.instances.default.limitForPeriod=2
+resilience4j.ratelimiter.instances.default.limitRefreshPeriod=10s
+resilience4j.bulkhead.instances.default.maxConcurrentCalls=10
+resilience4j.bulkhead.instances.sample-api.
+
+
 ```
 Eureka client
 --------------------
