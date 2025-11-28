@@ -115,7 +115,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 | **Verify void method** | `verify(mock).delete("123");` |
 | **Throw exception using doThrow() (void methods)** | `doThrow(new RuntimeException()).when(mock).delete("x");` |
 | **Throw exception using when().thenThrow() (non-void)** | `when(service.load("x")).thenThrow(new IOException());` |
-
+| **Mock/stub return value with when()** | `when(service.getName()).thenReturn("John");` |
 ## ✅ Full Example Covering Almost Everything
 
 ```java
@@ -282,7 +282,7 @@ Defining method or class order execution in property file
 In this case @BeforeALL @AfterAll method not need to be static as only once test class instance for all test cases.
 
 maven plugin to genrate report in test phase.
-there is two plugin to geneate report using maven surefire report plugin or jacoco(java code coverage) plugin.
+there is two plugin to geneate report using maven **surefire** report plugin or **jacoco(java code coverage)** plugin.
 ![img_7.png](img_7.png)
 target/site/surefirereoport.html geneate report by surefire
 ![img_8.png](img_8.png)
