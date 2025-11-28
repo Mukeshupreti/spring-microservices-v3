@@ -100,6 +100,7 @@ class UserServiceTest {
     // here three instances of test will rum with difference input
     @ParameterizedTest
     @ValueSource(strings = {"bob", "john", "mark"})
+    // you can have value strings,chars,shorts,booleans,check @ValueSource
 /*    Purpose: Pass a single array of values to the test method|Supports: primitives, Strings, classes.*/
     void testAddUser_MultipleValues(String name) {
         service.addUser(name);
@@ -121,6 +122,7 @@ class UserServiceTest {
     // ------- Testing exception -------
     @Test
     void testExceptionThrown() {
+        // for void method
         Mockito.doThrow(new IllegalArgumentException())
                 .when(repository).save(null);
         // this works for non-void methods

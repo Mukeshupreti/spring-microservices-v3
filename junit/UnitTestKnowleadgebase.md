@@ -57,7 +57,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         </plugins>
     </build>
 </project>```
-
+## org.junit.jupiter 
+      junit-jupiter
+## org.mockito
+    mockito-core
+    mockito-junit-jupiter
 # ✅ JUnit 5 + Mockito Cheat Sheet
 
 ## ✅ JUnit 5 Annotations
@@ -90,6 +94,27 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 | `@ExtendWith(MockitoExtension.class)` | Enables Mockito in JUnit 5 |
 
 ---
+| Purpose | Example |
+|--------|---------|
+| **Basic verify (called once)** | `verify(mock).doSomething();` |
+| **Verify with arguments** | `verify(mock).send("hello");` |
+| **Verify exact number of calls** | `verify(mock, times(2)).run();` |
+| **Verify zero calls** | `verify(mock, never()).run();` |
+| **Verify at least once** | `verify(mock, atLeastOnce()).run();` |
+| **Verify at least N times** | `verify(mock, atLeast(3)).run();` |
+| **Verify at most N times** | `verify(mock, atMost(2)).run();` |
+| **Verify no interactions** | `verifyNoInteractions(mock);` |
+| **Verify no more interactions** | `verifyNoMoreInteractions(mock);` |
+| **Verify call order** | `InOrder in = inOrder(m1, m2); in.verify(m1).start(); in.verify(m2).finish();` |
+| **Verify with matchers** | `verify(service).save(any());` |
+| **Verify mixed matchers** | `verify(service).update(eq("id"), anyInt());` |
+| **Verify async with timeout** | `verify(mock, timeout(1000)).load();` |
+| **Verify async + count** | `verify(mock, timeout(1000).times(2)).load();` |
+| **Verify never called with specific arg** | `verify(mock, never()).save(eq("bad"));` |
+| **ArgumentCaptor** | `var c = ArgumentCaptor.forClass(String.class); verify(s).send(c.capture());` |
+| **Verify void method** | `verify(mock).delete("123");` |
+| **Throw exception using doThrow() (void methods)** | `doThrow(new RuntimeException()).when(mock).delete("x");` |
+| **Throw exception using when().thenThrow() (non-void)** | `when(service.load("x")).thenThrow(new IOException());` |
 
 ## ✅ Full Example Covering Almost Everything
 
@@ -178,8 +203,11 @@ class UserServiceTest {
     // ------- Testing exception -------
     @Test
     void testExceptionThrown() {
+        // void returning method
         Mockito.doThrow(new IllegalArgumentException())
                 .when(repository).save(null);
+        // this works for non-void methods
+        //Mockito.when(repository.save(null)).thenThrow(IllegalArgumentException); 
 
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> service.addUser(null));
