@@ -33,6 +33,8 @@ public class AllInOne {
         ///Q2: given a (list of lines) get count of word
          //wordCounter();
 
+        flatmapExample();
+
         ///Q3: given a list of world get all unique letters
         //getAllUniqueCharacter();
 
@@ -84,17 +86,30 @@ public class AllInOne {
     private static void getAllUniqueCharacter() {
         List<String> words = Arrays.asList("hello", "world");
         List<String> unique = words.stream().map(word -> word.split(""))
-                .flatMap(Arrays::stream)
+                .flatMap(Arrays::stream)/// flatmap (T to Stream of T)--     <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(unique);
+    }
+
+    private static void flatmapExample(){
+        List<List<String>> listOfLists = Arrays.asList(
+                Arrays.asList("Alice", "Bob"),
+                Arrays.asList("Charlie", "David")
+        );
+
+        List<String> flattened = listOfLists.stream()
+                .flatMap(list -> list.stream())   // <--- This is the argument
+                .collect(Collectors.toList());
+
+        System.out.println(flattened);
     }
 
     private static void wordCounter() {
 
         List<String> lines = Arrays.asList("My name is mukesh", "I live in lilienthalstrasee", "I lives in augsburg");
         long count = lines.stream().map(line -> line.split(" "))
-                .flatMap(Arrays::stream)
+                .flatMap(Arrays::stream)//    public static <T> Stream<T> stream(T[] array) 
                 .count();
         System.out.println(count);
 
@@ -160,7 +175,7 @@ public class AllInOne {
         Map<Character, Long> result = names.stream()
                 .collect(Collectors.groupingBy(name -> name.charAt(0), Collectors.counting()));
         Map<Character, Set<String>> result = names.stream()
-                .collect(Collectors.groupingBy(name -> name.charAt(0), Collectors.toSet()));
+                .collect(Collectors.groupingBy(name -> name.charAt(0), Collectors.toSet(                                                                                                                                                                                                                                                              )));
 */
      /*   groupingBy(classifier)-->	Map<K, List<T>>	Default grouping
         groupingBy(classifier, downstream)	-->Map<K, D>	Custom collection per group*/

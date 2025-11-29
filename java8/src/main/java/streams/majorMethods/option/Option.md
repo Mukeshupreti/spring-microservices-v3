@@ -1,19 +1,7 @@
-# H1 - Main title
-## H2 - Section
-### H3 - Subsection
 
-*italic* or _italic_          → *italic*
-**bold** or __bold__          → **bold**
-***bold italic***             → ***bold italic***
 
-1. First
-2. Second
-3. Third
 
-` — Inline Code
-Use the `java` command to compile.
 
-<code>```</code> — Code Block (Multiline)
 
 ### Major Stream Methods That Return Optional<T>
 Optional<String> first = list.stream().findFirst();  
