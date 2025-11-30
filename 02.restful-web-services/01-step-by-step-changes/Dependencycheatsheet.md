@@ -186,11 +186,11 @@ Header versioning → keeps URL clean, but requires headers from clients.
 
 Content negotiation → most RESTful, supports formats, but adds complexity.
 
-params="version=1" → This method will only be invoked if the HTTP request contains a query parameter version=1.
+***params="version=1" → This method will only be invoked if the HTTP request contains a query parameter version=1.***
 
-So:
+So
 
-http://localhost:8080/person?version=1 → will call getPersonV1().
+**http://localhost:8080/person?version=1 → will call getPersonV1().**
 
 # Internationalized Hello World - Quick Reference
 
@@ -220,7 +220,7 @@ public class HelloWorldController {
 
 | Type | How It Works | URL | Fields | Example Response | Code Snippet |
 |------|-------------|-----|--------|----------------|--------------|
-| Static Filtering | Fixed at compile time using Jackson annotations (`@JsonIgnore`, `@JsonIgnoreProperties`, `@JsonProperty`) | `/filtering` | field1, field3 | `{ "field1":"value1","field3":"value3" }` | 
+| Static Filtering | Fixed at compile time using Jackson annotations (`@**JsonIgnore**`, `@**JsonIgnoreProperties**`, `@**JsonProperty**`) | `/filtering` | field1, field3 | `{ "field1":"value1","field3":"value3" }` | 
 ```java
 @JsonIgnoreProperties({"field2"})
 public class SomeBean {
@@ -230,9 +230,9 @@ private String field1;
 }
 ``` 
 | Dynamic Filtering | Runtime filtering using `MappingJacksonValue` + `SimpleBeanPropertyFilter` | `/filtering-list` | field2, field3 | `[{"field2":"value2","field3":"value3"},{"field2":"value5","field3":"value6"}
-Uses @JsonFilter("SomeBeanFilter") in SomeBean class.
+**Uses @JsonFilter("SomeBeanFilter") in SomeBean class.**
 
-MappingJacksonValue + SimpleBeanPropertyFilter applies the filtering dynamically.
+**MappingJacksonValue + SimpleBeanPropertyFilter applies the filtering dynamically.**
 ```java
 @GetMapping("/filtering-list")
 MappingJacksonValue filteringList() {
@@ -269,7 +269,7 @@ server.port=
 ```
 
 ## how path makes:
-http://localhost:8080/{server.servlet.context-path}/{Class-url}/{method-url}
+http://localhost:8080/{server.servlet.context-path}/{@RequestMappingURL(CLASS_LEVEL}/{@HTTPMETHOD(methodurl)}
 #### api
 http://localhost:8080/learn-rest/in-memory/users
 
@@ -370,20 +370,20 @@ http.csrf(csrf -> csrf.disable()); // // Starting from Spring Boot 3.1.x
 
 # RestTemplate Quick Reference (Including Generic List Responses)
 
-| Method | Description | Example                                                                                                                                                                                                                                                                                                   |
-|--------|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **getForObject(url, class)** | GET request, returns response body directly | `User user = restTemplate.getForObject("http://localhost:8080/users/1", User.class);`                                                                                                                                                                                                                     |
-| **getForObject(url, ParameterizedTypeReference)** | GET request for generic types (e.g., List<User>) | ```java\nResponseEntity<List<User>> response = restTemplate.exchange(\n    "http://localhost:8080/users",\n    HttpMethod.GET,\n    null,\n    new ParameterizedTypeReference<List<User>>(){}\n);\nList<User> users = response.getBody();\n```                                                            |
-| **getForEntity(url, class)** | GET request, returns `ResponseEntity<T>` (status, headers, body) | `ResponseEntity<User> response = restTemplate.getForEntity("http://localhost:8080/users/1", User.class);`                                                                                                                                                                                                 |
-| **postForObject(url, request, class)** | POST request, returns response body | `User created = restTemplate.postForObject("http://localhost:8080/users", newUser, User.class);`                                                                                                                                                                                                          |
-| **postForEntity(url, request, class)** | POST request, returns `ResponseEntity<T>` | `ResponseEntity<User> response = restTemplate.postForEntity("http://localhost:8080/users", newUser, User.class);`                                                                                                                                                                                         |
-| **put(url, request)** | PUT request, returns void | `restTemplate.put("http://localhost:8080/users/1", updatedUser);`                                                                                                                                                                                                                                         |
-| **delete(url)** | DELETE request | `restTemplate.delete("http://localhost:8080/users/1");`                                                                                                                                                                                                                                                   |
-| **exchange(url, method, entity, class)** | Generic method for any HTTP method with headers/body | ```java \n HttpHeaders headers = new HttpHeaders();\nheaders.set("Authorization", "Bearer token");\nHttpEntity<User> entity = new HttpEntity<>(updatedUser, headers);\nResponseEntity<User> response = restTemplate.exchange("http://localhost:8080/users/1", HttpMethod.PUT, entity, User.class); \n ``` |
-| **exchange(url, method, entity, ParameterizedTypeReference)** | Generic method for any HTTP method with **generic collection response** | ```java\nResponseEntity<List<User>> response = restTemplate.exchange(\n    "http://localhost:8080/users",\n    HttpMethod.GET,\n    null,\n    new ParameterizedTypeReference<List<User>>(){}\n);\nList<User> users = response.getBody();\n```                                                            |
-| **headForHeaders(url)** | HEAD request, returns headers only | `HttpHeaders headers = restTemplate.headForHeaders("http://localhost:8080/users/1");`                                                                                                                                                                                                                     |
-| **optionsForAllow(url)** | OPTIONS request, returns allowed HTTP methods | `Set<HttpMethod> allowed = restTemplate.optionsForAllow("http://localhost:8080/users");`                                                                                                                                                                                                                  |
-| **execute(url, method, requestCallback, responseExtractor)** | Low-level, full control over request and response | ```java\nrestTemplate.execute("http://localhost:8080/users/1", HttpMethod.DELETE, null, null);\n```                                                                                                                                                                                                       |
+| Method | Description | Example                                                                                                                                                                                                                                                                             |
+|--------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **getForObject(url, class)** | GET request, returns response body directly | `User user = restTemplate.getForObject("http://localhost:8080/users/1", User.class);`                                                                                                                                                                                               |
+| **getForObject(url, ParameterizedTypeReference)** | GET request for generic types (e.g., List<User>) | List<User> users = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List< User > >() {}).getBody();                                                                                                                                                  |
+| **getForEntity(url, class)** | GET request, returns `ResponseEntity<T>` (status, headers, body) | `ResponseEntity<User> response = restTemplate.getForEntity("http://localhost:8080/users/1", User.class);`                                                                                                                                                                           |
+| **postForObject(url, request, class)** | POST request, returns response body | `User created = restTemplate.postForObject("http://localhost:8080/users", newUser, User.class);`                                                                                                                                                                                    |
+| **postForEntity(url, request, class)** | POST request, returns `ResponseEntity<T>` | `ResponseEntity<User> response = restTemplate.postForEntity("http://localhost:8080/users", newUser, User.class);`                                                                                                                                                                   |
+| **put(url, request)** | PUT request, returns void | `restTemplate.put("http://localhost:8080/users/1", updatedUser);`                                                                                                                                                                                                                   |
+| **delete(url)** | DELETE request | `restTemplate.delete("http://localhost:8080/users/1");`                                                                                                                                                                                                                             |
+| **exchange(url, method, entity, class)** | Generic method for any HTTP method with headers/body | HttpHeaders headers = new HttpHeaders();headers.set("Authorization", "Bearer token");HttpEntity<User> entity = new HttpEntity<>(updatedUser, headers);\nResponseEntity<User> response = restTemplate.exchange("http://localhost:8080/users/1", HttpMethod.PUT, entity, User.class); |
+| **exchange(url, method, entity, ParameterizedTypeReference)** | Generic method for any HTTP method with **generic collection response** | ResponseEntity<List<User>> response = restTemplate.exchange(\n    "http://localhost:8080/users",    HttpMethod.GET,    null,   new ParameterizedTypeReference<List<User>>(){});List<User> users = response.getBody();                                                               |
+| **headForHeaders(url)** | HEAD request, returns headers only | `HttpHeaders headers = restTemplate.headForHeaders("http://localhost:8080/users/1");`                                                                                                                                                                                               |
+| **optionsForAllow(url)** | OPTIONS request, returns allowed HTTP methods | `Set<HttpMethod> allowed = restTemplate.optionsForAllow("http://localhost:8080/users");`                                                                                                                                                                                            |
+| **execute(url, method, requestCallback, responseExtractor)** | Low-level, full control over request and response | ```java\nrestTemplate.execute("http://localhost:8080/users/1", HttpMethod.DELETE, null, null);\n```                                                                                                                                                                                 |
 
 > **Tip:** For **generic responses like `List<User>`**, always use `exchange()` with `ParameterizedTypeReference<T>` because `getForObject` cannot handle generic types properly.  
 > For new projects, consider **`WebClient`** instead of `RestTemplate` for reactive and non-blocking calls.

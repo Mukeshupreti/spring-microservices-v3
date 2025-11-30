@@ -36,3 +36,17 @@ Arrays.asList("Charlie", "David")
     }
 }
 ```
+# Comparator Methods for `max()` and `maxBy()`
+
+| Comparison Type           | Example with `max()`                                              | Example with `maxBy()`                                              | What You Pass In                          |
+|---------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------|
+| Getter method reference   | `max(comparing(Person::getAge))`                                  | `maxBy(comparing(Person::getAge))`                                  | Getter returning Comparable value          |
+| Lambda expression         | `max(comparing(p -> p.getSalary()))`                              | `maxBy(comparing(p -> p.getSalary()))`                              | Lambda returning key                       |
+| Primitive comparator      | `max(comparingInt(Person::getAge))`                               | `maxBy(comparingInt(Person::getAge))`                               | Getter returning int/long/double           |
+| Custom comparator         | `max((a,b) -> a.getScore().compareTo(b.getScore()))`              | `maxBy((a,b) -> a.getScore().compareTo(b.getScore()))`              | Full custom comparison logic               |
+| Using `Integer::compare`  | `max((a,b) -> Integer.compare(a.getAge(), b.getAge()))`           | `maxBy((a,b) -> Integer.compare(a.getAge(), b.getAge()))`           | 2-arg comparison method                    |
+| Multiple fields           | `max(comparing(Person::getAge).thenComparing(Person::getName))`   | `maxBy(comparing(Person::getAge).thenComparing(Person::getName))`   | Composite comparator                       |
+| Reverse order             | `max(comparing(Person::getRank).reversed())`                      | `maxBy(comparing(Person::getRank).reversed())`                      | Reverse comparator                         |
+
+
+`Stream.max(Comparator<? super T>)` accepts the same comparators as `Collectors.maxBy(Comparator)`.

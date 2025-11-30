@@ -36,6 +36,11 @@ void reverse(int[] arr) {
 ## 3. Find Missing Number (1..n)
 
 **Explanation:** XOR or sum formula.\
+
+* xor1 = XOR of all numbers from 1..n
+* xor2 = XOR of all array elements
+* missing = xor1 ^ xor2
+
 **Solution:**
 
 ``` java
@@ -44,11 +49,35 @@ int missingNumber(int[] arr, int n) {
     for (int x : arr) sum -= x;
     return sum;
 }
+**XOR**
+public int findMissingXOR(int[] nums, int n) {
+    int xor1 = 0, xor2 = 0;
+
+    for (int i = 1; i <= n; i++) xor1 ^= i;
+    for (int num : nums) xor2 ^= num;
+
+    return xor1 ^ xor2;
+}
+
+
 ```
 
 ## 4. Remove Duplicates (Sorted Array)
 
 **Explanation:** Two-pointer approach to overwrite duplicates.\
+
+```
+Why Two-Pointer Technique?
+
+Because the array is sorted, duplicates are always next to each other.
+
+We use:
+
+i → scans through the array
+
+j → position where we place the next unique element
+```
+
 **Solution:**
 
 ``` java
@@ -64,7 +93,13 @@ int removeDuplicates(int[] arr) {
 
 **Explanation:** Track largest and second largest.\
 **Solution:**
+````
+This handles the case when the number is:
 
+✔ smaller than the current max
+✔ but larger than the current second largest
+✔ and not equal to max (ensures distinct value)
+````
 ``` java
 int secondLargest(int[] arr) {
     int max = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
@@ -136,20 +171,78 @@ int maxSubArray(int[] arr) {
     return maxSoFar;
 }
 ```
+Array:
 
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+arr[i] > curr (**previous**) + arr[i] - current(**arr[i]**) is better (start sub array)
+
+curr + arr[i] >= arr[i] (extend as get better after adding curr (**previous**) + current(**arr[i]**)
+
+
+| i | arr[i] | curr + arr[i] | curr (chosen)                        | currStart | maxSoFar | bestStart | bestEnd |
+|---|--------|----------------|--------------------------------------|-----------|----------|-----------|---------|
+| 0 | -2     | -              | -2  (start new)                      | 0         | -2       | 0         | 0       |
+| 1 | 1      | -1             | 1   (start new)                      | 1         | 1        | 1         | 1       |
+| 2 | -3     | -2             | -2  (extend)                         | 1         | 1        | 1         | 1       |
+| 3 | 4      | 2              | 4   (start new)                      | 3         | 4        | 3         | 3       |
+| 4 | -1     | 3              | 3   (extend)                         | 3         | 4        | 3         | 3       |
+| 5 | 2      | 5              | 5   (extend)                         | 3         | 5        | 3         | 5       |
+| 6 | 1      | 6              | 6   (extend)                         | 3         | 6        | 3         | 6       |
+| 7 | -5     | 1              | 1   (extend)                         | 3         | 6        | 3         | 6       |
+| 8 | 4      | 5              | 5   (extend)                         | 3         | 6        | 3         | 6       |
+
+
+Final Result
+
+Maximum Subarray Sum: 6
+
+Subarray: [4, -1, 2, 1]
+
+Indices: 3 to 6
 ## 10. Two Sum (Return Indices)
 
 **Explanation:** Use HashMap to track needed complements.\
 **Solution:**
+```
+**Given an array and a target sum, return the indices of the two numbers that add up to the target.**
+
+Example:
+
+arr = [2, 7, 11, 15]
+target = 9
+Output: [0, 1]   // because 2 + 7 = 9
+```
 
 ``` java
 int[] twoSum(int[] arr, int target) {
-    Map<Integer, Integer> map = new HashMap<>();
+    Map<Integer, Integer> map = new HashMap<>(); // value -> index
+
     for (int i = 0; i < arr.length; i++) {
-        int need = target - arr[i];
-        if (map.containsKey(need)) return new int[]{map.get(need), i};
+        int complement = target - arr[i];
+
+        if (map.containsKey(complement)) {
+            return new int[]{ map.get(complement), i };
+        }
+
         map.put(arr[i], i);
     }
-    return new int[]{};
+
+    return new int[]{-1, -1}; // no solution
 }
 ```
+```
+arr = [3, 8, 12, 4, 7, 5]
+target = 11
+Pairs that make 11 → (4,7) → indices 3 and 4
+This appears late, so the algorithm must traverse almost the full array.
+```
+
+| i | arr[i] | complement (target - arr[i]) | map contains complement? | map contents (value→index) before insertion | action                     |
+|---|--------|------------------------------|---------------------------|---------------------------------------------|-----------------------------|
+| 0 | 3      | 8                            | ❌ No                     | {}                                          | put 3→0                     |
+| 1 | 8      | 3                            | ❌ No                     | {3=0}                                       | put 8→1                     |
+| 2 | 12     | -1                           | ❌ No                     | {3=0, 8=1}                                  | put 12→2                    |
+| 3 | 4      | 7                            | ❌ No                     | {3=0, 8=1, 12=2}                            | put 4→3                     |
+| 4 | 7      | 4                            | ✅ Yes (4 exists at i=3)  | {3=0, 8=1, 12=2, 4=3}                       | return [3, 4]               |
+

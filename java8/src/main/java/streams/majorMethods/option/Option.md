@@ -32,71 +32,83 @@ Optional<String> emptyOpt = Optional.empty();
 
 
 ### What is the difference between Optional.of() and Optional.ofNullable()?
-   Optional.of(value)
+  `
+   Optional.of(value) Throws NullPointerException if value is null.
+   `
 
-Throws NullPointerException if value is null.
 
-Optional.ofNullable(value)
+`
+Optional.ofNullable(value) //Accepts null and returns Optional.empty() if the value is null.
+`
 
-Accepts null and returns Optional.empty() if the value is null.  
+
+  ```
   Optional.of(null);         // Throws NPE
   Optional.ofNullable(null); // Safe, returns Optional.empty()
+  ```
 
 ### What happens if you call get() on an empty Optional?
+  ```
 Optional<String> opt = Optional.empty();
 opt.get(); // throws NoSuchElementException
-
+  ```
 
 ###  What is the difference between orElse() and orElseGet()?
-orElse(value)
 
-Always evaluates the provided default value, even if it's not used.
+  
+  ``` 
+orElse(value) // **Always evaluates the provided default value, even if it's not used.** 
+  ```
 
-orElseGet(Supplier)
+  ```
+orElseGet(Supplier) // **Lazily evaluates the value only if needed.**
+  ```
 
-Lazily evaluates the value only if needed.
-
+  ```
 String val = Optional.of("hello").orElse(expensiveCall());     // Always calls expensiveCall()
 String val = Optional.of("hello").orElseGet(() -> expensiveCall()); // Calls only if Optional is empty
-
+  ```
 
 ### How does map() differ from flatMap() in Optional?
-map() transforms the value and wraps it in a new Optional.
-
-flatMap() is used when the transformation itself returns an Optional.
-
-Optional<String> name = Optional.of("Bob");
-
-name.map(String::toUpperCase); // Optional<String>
-name.flatMap(n -> Optional.of(n.toUpperCase())); // Also Optional<String>, but avoids nested Optional<Optional<>>
-
+* map() transforms the value and wraps it in a new Optional.
+* 
+* flatMap() is used when the transformation itself returns an Optional.
+* 
+* Optional<String> name = Optional.of("Bob");
+* 
+* name.map(String::toUpperCase); // Optional<String>
+* name.flatMap(n -> Optional.of(n.toUpperCase())); // Also Optional<String>, but avoids nested Optional<Optional<>>
+* 
 
 ###  When would you use filter() on an Optional?
+  ```
 Use filter() to retain the value only if it matches a condition.
 Optional<String> name = Optional.of("Alice");
 name.filter(n -> n.startsWith("A")); // Optional with value "Alice"
 
 name.filter(n -> n.startsWith("B")); // Optional.empty()
-
+  ```
 
 ### How do you provide a custom exception when a value is not present?
+  ```
 Use orElseThrow(Supplier<Exception>).
 String value = Optional.empty()
 .orElseThrow(() -> new IllegalArgumentException("Value not present"));
-
+  ```
 ## How to do null pointer check
 ### void NullPointerException with isPresent() / ifPresent()
-
+  ```
 Optional<String> optional = Optional.ofNullable(getNullableString());
 
 if (optional.isPresent()) {
 System.out.println(optional.get());
 }
-#Better way:
+  ```
+# Better way:
 
-
+  ```
 optional.ifPresent(value -> System.out.println(value));
-
+  ```
 ### How can Optional be misused and lead to performance issues?
 Using Optional as a method parameter or field in a class can lead to unnecessary object creation.
 
@@ -105,12 +117,12 @@ Overusing chaining in performance-sensitive code can reduce clarity and performa
 Avoid Optional in serialization or large-scale data models.
 
 Explain a real-world scenario where chaining map().filter().orElse()
-
+  ```
 String username = Optional.ofNullable(request.get("username"))
 .map(String::trim)
 .filter(u -> u.length() >= 3)
 .orElse("guest");
-
+  ```
 This safely handles:
 
 null values

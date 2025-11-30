@@ -130,26 +130,26 @@ String[] array = list.stream()
 # Summary Table of Major Stream Methods
 
 ## Intermediate	
-map()	Transform elements  
-filter()	Filter elements based on condition  
-flatMap()	Flatten nested streams  
-distinct()	Remove duplicates  
-sorted()	Sort elements  
-peek()	Perform actions on each element (debugging)  
-limit()	Limit number of elements  
-skip()	Skip elements  
+1. map()	Transform elements  
+2. filter()	Filter elements based on condition  
+3. flatMap()	Flatten nested streams  
+4. distinct()	Remove duplicates  
+5. sorted()	Sort elements  
+6. peek()	Perform actions on each element (debugging)  
+7. limit()	Limit number of elements  
+8. skip()	Skip elements  
 ## Terminal	
-collect()	Collect elements into a collection  
-forEach()	Perform an action on each element  
-reduce()	Reduce elements to a single value  
-count()	Count elements  
-anyMatch()	Check if any element matches condition  
-allMatch()	Check if all elements match condition  
-noneMatch()	Check if no elements match condition  
-findFirst()	Get the first element (Optional)  
-findAny()	Get any element (Optional)  
-min()/max()	Get the minimum/maximum element  
-toArray()	Convert the stream into an array  
+1. collect()	Collect elements into a collection  
+2. forEach()	Perform an action on each element  
+3. reduce()	Reduce elements to a single value  
+4. count()	    Count elements  
+5. anyMatch()	Check if any element matches condition **(boolean)** 
+6. allMatch()	Check if all elements match condition **(boolean)**   
+7. noneMatch()	Check if no elements match condition  **(boolean)**
+8. findFirst()	Get the first element **(Optional)**  
+9. findAny()	Get any element **(Optional)**  
+10. min()/max()	Get the minimum/maximum element **(Optional)**     
+11. toArray()	Convert the stream into an array  
 
 ## flatmap syntex
 Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper) 
