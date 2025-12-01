@@ -163,12 +163,54 @@ boolean[] sieve(int n) {
     return prime;
 }
 ```
-
+# **This works because GCD × LCM = product of the numbers.**
 ## 8. Greatest Common Divisor (GCD)
+
 
 **Explanation:** Euclid's algorithm.\
 **Solution:**
+Method 3: Euclidean Algorithm
 
+Step 1: Find GCD(12, 18)
+
+Divisors of 12 → 1, 2, 3, 4, 6, 12
+
+Divisors of 18 → 1, 2, 3, 6, 9, 18
+✅ GCD = 6
+Divide the larger number by the smaller number and take the remainder:
+
+60
+÷
+36
+=
+1
+60÷36=1 remainder
+24
+24
+
+Replace numbers: now find GCD(36, 24)
+
+36
+÷
+24
+=
+1
+36÷24=1 remainder
+12
+12
+
+Replace numbers: now find GCD(24, 12)
+
+24
+÷
+12
+=
+2
+24÷12=2 remainder
+0
+0
+
+Remainder is 0 → last non-zero remainder is GCD = 12 ✅
 ``` java
 int gcd(int a, int b) {
     return b == 0 ? a : gcd(b, a % b);
@@ -176,6 +218,28 @@ int gcd(int a, int b) {
 ```
 
 ## 9. Least Common Multiple (LCM)
+
+Example 3: LCM(8, 12)
+
+Multiples of 8 → 8, 16, 24, 32, …
+
+Multiples of 12 → 12, 24, 36, …
+
+✅ First common multiple → 24
+LCM = 24
+
+🔹 Steps to find LCM manually
+
+Write multiples of both numbers
+
+Compare them one by one
+
+Stop at the first common multiple → that is LCM
+
+This method works for small numbers, but for large numbers, the formula using GCD is faster.
+
+
+Do you want me to explain that method?
 
 **Explanation:** `LCM(a,b) = |a*b| / GCD(a,b)`\
 **Solution:**
