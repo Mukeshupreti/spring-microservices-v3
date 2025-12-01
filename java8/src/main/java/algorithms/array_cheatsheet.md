@@ -104,7 +104,10 @@ This handles the case when the number is:
 int secondLargest(int[] arr) {
     int max = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
     for (int n : arr) {
+        // move the max to second when you find max value
         if (n > max) { second = max; max = n; }
+        // you can get some second max which are greater than
+       // current second but smaller than max
         else if (n > second && n < max) second = n;
     }
     return second;
@@ -146,6 +149,7 @@ int binarySearch(int[] arr, int target) {
 
 **Explanation:** Two-pointer compaction approach.\
 **Solution:**
+Add first non zero to array and then fill zero till length
 
 ``` java
 void moveZeros(int[] arr) {

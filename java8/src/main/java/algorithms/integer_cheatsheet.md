@@ -63,22 +63,80 @@ original.\
 **Solution:**
 
 ``` java
-boolean isArmstrong(int n) {
-    int temp = n, sum = 0, d = countDigits(n);
-    while (temp != 0) {
-        int digit = temp % 10;
-        sum += Math.pow(digit, d);
-        temp /= 10;
+ public static boolean isArmstrong(int number) {
+        int original = number;
+        int digits = String.valueOf(number).length();
+
+        int sum = 0;
+        while (number > 0) {
+            int digit = number % 10;
+            sum += Math.pow(digit, digits);
+            number /= 10;
+        }
+
+        return sum == original;
     }
-    return sum == n;
-}
 ```
 
 ## 6. Prime Check
 
 **Explanation:** Check divisibility up to sqrt(n).\
 **Solution:**
+A natural number greater than 1 that has exactly two distinct positive divisors: 1 and itself.
 
+**A number is prime if it is greater than 1 and not divisible by any number from 2 to √n.
+Checking up to √n is enough because if n has a factor greater than √n, the corresponding factor must be less than √n**.
+
+Think of factors as pairs
+
+Every number is made by multiplying two numbers (a pair).
+
+Example:
+36 = 4 × 9
+36 = 6 × 6
+36 = 2 × 18
+36 = 1 × 36
+
+For every pair:
+
+👉 one number is small
+👉 the other number is big
+
+🔵 The middle point where small meets big = √n
+
+For 36:
+
+√36 = 6
+So 6 is the “middle”.
+
+Below 6 → small numbers (1, 2, 3, 4, 5, 6)
+Above 6 → big numbers (7, 8, 9, 10, …)
+
+Now look again at the factor pairs of 36:
+
+Small	Big
+1	36
+2	18
+3	12
+4	9
+6	6
+
+Do you see it?
+
+👉 Every factor pair has one number from the “small side” (≤ 6).
+
+You NEVER see a pair like (7 × ?).
+Because if you go above 6, the matching number on the other side becomes less than 6.
+
+🔵 So why check only small side (≤ √n)?
+
+Because if a number is NOT prime,
+it must have a factor in the small side.
+
+If you find NO divisors there,
+then the number is prime.
+
+√25 = 5 because 5 × 5 = 25
 ``` java
 boolean isPrime(int n) {
     if (n <= 1) return false;
