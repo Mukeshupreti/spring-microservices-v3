@@ -1,5 +1,9 @@
 # String Algorithms Cheat Sheet (Java)
 
+**String methods**
+
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
 ## 1. Reverse a String
 
 **Explanation:** Reverse characters manually or using built‑in
