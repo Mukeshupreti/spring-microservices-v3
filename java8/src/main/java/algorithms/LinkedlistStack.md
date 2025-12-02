@@ -27,7 +27,7 @@ boolean hasCycle(ListNode head) {
     ListNode slow = head, fast = head;
     while (fast != null && fast.next != null) {
         slow = slow.next;
-        fast = fast.next.next;
+        fast = fast.next.next;// this can through nullpointerEx fast.next != null due to  this line
         if (slow == fast) return true;
     }
     return false;
@@ -64,6 +64,14 @@ ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
 ```
 ### 5. Remove N-th Node From End
+**solution**: 
+    We create two pointers (first and second) that start from the same place.
+    Then we move first ahead by N+1 steps.(**Because we want second to stop one node before the one we need to remove.**)
+
+
+**Why this is wokring**
+    second(0) ---gap is n+1 =(n+1-0)---First(n+1)
+    so when first reaches null , second will reach n th node from end
 ```java
 ListNode removeNthFromEnd(ListNode head, int n) {
     ListNode dummy = new ListNode(0);
@@ -90,11 +98,11 @@ class MyStack {
 
 ```
 
-### 2. Implement Stack Using LinkedList
+### 2. Implement Stack Using LinkedList // have head pointet to keep track of top. very similar to linkedlist reverse
 ```java
 class StackNode { int val; StackNode next; }
 class MyStack {
-    StackNode head;
+    StackNode head; // top of the stack .first time is null and every time we push we create new node and point it to head and update head to new node
     void push(int x) { StackNode node = new StackNode(); node.val = x; node.next = head; head = node; }
     int pop() { int val = head.val; head = head.next; return val; }
     int peek() { return head.val; }
@@ -106,6 +114,14 @@ class MyStack {
 ### 3. Min Stack (Track Minimum)
 
 Idea: Use auxiliary stack for min.
+We maintain two stacks:
+
+stack – holds all values (normal stack)
+
+minStack – holds the minimum values seen so far
+
+This way, the minimum element at any time is simply the top of minStack, giving O(1) getMin().
+![img.png](img.png)
 ```java
 class MinStack {
     Stack<Integer> stack = new Stack<>(), minStack = new Stack<>();
@@ -120,6 +136,14 @@ class MinStack {
 ### 4. Evaluate Postfix Expression
 
 Idea: Stack operands, apply operators.
+Postfix notation recap
+
+In postfix (Reverse Polish Notation), operators come after operands.
+
+Example: ["2","3","+","4","*"] → equivalent to (2+3)*4.
+
+![img_2.png](img_2.png)
+
 ```java
 int evalPostfix(String[] tokens) {
     Stack<Integer> stack = new Stack<>();
@@ -140,6 +164,8 @@ int evalPostfix(String[] tokens) {
 ```
 
 ### 5. Check Balanced Parentheses
+
+![img_3.png](img_3.png)
 ```java
 boolean isBalanced(String s) {
     Stack<Character> stack = new Stack<>();
@@ -153,41 +179,9 @@ boolean isBalanced(String s) {
 
 ```
 
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
 
 
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
 
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
-```java
-```
-
-
-### 2. Detect Cycle (Floyd’s Tortoise & Hare)
+### 6. next
 ```java
 ```
