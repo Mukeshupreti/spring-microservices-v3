@@ -164,8 +164,13 @@ int evalPostfix(String[] tokens) {
 ```
 
 ### 5. Check Balanced Parentheses
+![img_8.png](img_8.png)
+
 
 ![img_3.png](img_3.png)
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+![img_9.png](img_9.png)
 ```java
 boolean isBalanced(String s) {
     Stack<Character> stack = new Stack<>();
@@ -174,6 +179,9 @@ boolean isBalanced(String s) {
         else if (!stack.isEmpty() && "({[".indexOf(stack.peek()) == ")}]".indexOf(c)) stack.pop();
         else return false;
     }
+    //After processing the whole string:
+    //If stack is empty → all opening brackets found matching closing brackets → balanced.
+    //If stack is not empty → some opening brackets were never closed → not balanced.
     return stack.isEmpty();
 }
 
