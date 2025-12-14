@@ -16,6 +16,7 @@ String reverse(String s) {
 }
 ```
 
+
 ## 2. Check Palindrome
 
 **Explanation:** Compare string with its reverse or use two pointers.\

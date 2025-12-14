@@ -1,5 +1,6 @@
 # intermediate Methods
 
+
 ## 1. map()
 Transforms each element into another form.
 

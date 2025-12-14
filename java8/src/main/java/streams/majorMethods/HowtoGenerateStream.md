@@ -25,6 +25,7 @@
 
 # Java Cheat Sheet: Lambdas + Streams + Method References
 
+
 ---
 
 ## 🎯 1. Lambda Expressions

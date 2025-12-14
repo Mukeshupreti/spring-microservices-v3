@@ -1,5 +1,6 @@
 # Numbers Algorithms
 
+
 Repository: `Algorithms/src/main/java/org/Numbers/NumbersAlgorithms.md`
 
 ## Table of Contents

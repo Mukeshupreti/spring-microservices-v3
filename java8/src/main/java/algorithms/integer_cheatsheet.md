@@ -17,6 +17,7 @@ int reverse(int x) {
 }
 ```
 
+
 ## 2. Check if Number is Palindrome
 
 **Explanation:** Compare reversed number with original.\

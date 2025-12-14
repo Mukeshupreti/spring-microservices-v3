@@ -19,6 +19,7 @@ Teams use it to continuously monitor and improve code quality.
 
 ---
 
+
 ## ✅ 3. What metrics are shown on a Sonar Dashboard?
 
 | Metric | Description                                                                                               |

@@ -1,4 +1,5 @@
 
+
 ### Major Functions in Collectors
 ``` java
 List<String> list = stream.collect(Collectors.toList());

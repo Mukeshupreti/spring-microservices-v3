@@ -1,5 +1,6 @@
 # Understanding `flatMap` in Java Streams
 
+
 ## 1️⃣ flatMap Signature
 
 The `flatMap` method on a Stream has the following signature:

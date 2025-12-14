@@ -1,5 +1,6 @@
 #### solid Pattern are specification and Design patterns are its implementation.
 
+
 ## All the SOLID priciple are closly related to each other if you satisfied/voildate one other get satisfied
 
 ### Single Responsibility

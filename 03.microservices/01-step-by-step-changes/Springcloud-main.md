@@ -7,7 +7,7 @@
 ![img_6.png](img_6.png)
 
 - 
-- 
+
 - [Spring Boot & Spring Cloud Versions](#spring-boot--spring-cloud-versions)
 - [URLs](#urls)
 - [Debugging Guides](#debugging-guides)
