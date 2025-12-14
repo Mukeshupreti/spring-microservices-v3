@@ -76,6 +76,12 @@ We use:
 i → scans through the array
 
 j → position where we place the next unique element
+Why does the algorithm start with j = 1 and i = 1 instead of 0?
+
+This method assumes the input array is already sorted.
+When the array is sorted, the first element is always unique (there’s nothing before it to compare with).
+
+That leads to two reasons:
 ```
 
 **Solution:**
