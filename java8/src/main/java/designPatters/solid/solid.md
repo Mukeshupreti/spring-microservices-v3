@@ -1,5 +1,19 @@
 #### solid Pattern are specification and Design patterns are its implementation.
+## creational (object creation patter)
+1. Singalton
+2. Factory or Abstract Factory
+3. Protype
+4. Builder
 
+## Structure pattern ( How to increase funtionality of class using structor chage )
+1. Docorator
+2. Template
+3. Fascade
+4. Adapter
+
+## Beharvoir pattern (How to increase communication effectily between classes)
+1. Strategy
+2. Observer 
 
 ## All the SOLID priciple are closly related to each other if you satisfied/voildate one other get satisfied
 

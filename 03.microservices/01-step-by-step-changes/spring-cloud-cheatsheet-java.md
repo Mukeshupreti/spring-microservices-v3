@@ -28,9 +28,56 @@
         --spring.profiles.active=dev
 -----
 
+🟩 GroupId: org.springframework.cloud
+
+Spring Cloud components
+
+spring-cloud-starter-config
+
+spring-cloud-config-server
+
+spring-cloud-starter-openfeign
+
+spring-cloud-starter-gateway
+
+spring-cloud-starter-netflix-eureka-client
+
+spring-cloud-starter-netflix-eureka-server
+
+🟩 GroupId: io.github.resilience4j
+
+Resilience / Fault Tolerance
+
+resilience4j-spring-boot2
+
+
+
+```
+spring.cloud.config.server.git.uri=file:///C:/git/config-repo
+spring.cloud.config.server.git.default-label=main
+
+@EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
+@EnableEurekaServer
+
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+@GetMapping("/sample-api")
+//@Retry(name = "sample-api", fallbackMethod = "hardcodedResponse")
+//@CircuitBreaker(name = "default", fallbackMethod = "hardcodedResponse")
+//@RateLimiter(name="default") // number of request per second
+@Bulkhead(name="sample-api") // number of concurrent reqs per second
+//10s => 10000 calls to the sample api
+```
+
 quick :
 resilence4J
 -----------------
+1. retry
+2. circuitbreaker
+3. ratelimitter-rate of request
+4. bulkhead-concurrent call
 
 ```<dependency>
   <groupId>io.github.resilience4j</groupId>
@@ -452,7 +499,7 @@ public interface CurrencyExchangeProxy {
 **Enable Feign in main**
 ```java
 @SpringBootApplication
-@EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
+@EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")// package name where to scan Feignclient Interface
 public class CurrencyConversionServiceApplication {}
 ```
 

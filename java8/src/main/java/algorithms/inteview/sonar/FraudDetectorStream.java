@@ -32,7 +32,15 @@ public class FraudDetectorStream {
                 .collect(Collectors.groupingBy(t -> t.userId,
                         Collectors.mapping(t -> t.amount,Collectors.counting())));
         // Step 2: Users who made 2 transactions within 100 seconds
-        Set<String> timeFraud =
+
+        // steps
+             //- Create map of userId and timestamp
+             // - from entryset for each entry filter out Entryset  (
+                                                             // --get one value (list of timestamp) , sort them timeshatp,
+                                                             //  now difference between two consicutive timestamp
+                                                             //  true if greater than time window else false
+                                                             // from that entryset get the useID as key and collect to set
+         Set<String> timeFraud =
                 transactions.stream()
                         .collect(Collectors.groupingBy(t -> t.userId,
                                 Collectors.mapping(t -> t.timestamp, Collectors.toList())))
@@ -48,7 +56,7 @@ public class FraudDetectorStream {
                             }
                             return false;
                         })
-                        .map(Map.Entry::getKey)
+                        .map(x->x.getKey())
                         .collect(Collectors.toSet());
 
         // Combine and return sorted list

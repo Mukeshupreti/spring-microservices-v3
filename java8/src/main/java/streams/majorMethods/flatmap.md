@@ -37,7 +37,7 @@ Arrays.asList("Charlie", "David")
     }
 }
 ```
-# Comparator Methods for `max()` and `maxBy()`
+# Comparator Methods for `max()` and  Collectors `maxBy()`
 
 | Comparison Type           | Example with `max()`                                              | Example with `maxBy()`                                              | What You Pass In                          |
 |---------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------|

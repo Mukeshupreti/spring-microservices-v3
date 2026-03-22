@@ -27,11 +27,28 @@ public class WikimediaChangesProducer {
 
     public void sendMessage() throws InterruptedException {
         // to read real time stream data from wikimedia, we use event source
+        // topic name = wikimedia_recentchange
+
+        // This is EventHandler which will react to on Message which take MessageEvent
         EventHandler eventHandler = new WikimediaChangesHandler(kafkaTemplate, topicName);
         String url = "https://stream.wikimedia.org/v2/stream/recentchange";
-        EventSource.Builder builder = new EventSource.Builder(eventHandler, URI.create(url));
-        EventSource eventSource = builder.build();
+
+        /*EventSource.Builder builder = new EventSource.Builder(eventHandler, URI.create(url));
+        EventSource eventSource = builder.build();*/
+
+        // here EventSource (internally) usage Executer service to create the Threads.
+        EventSource eventSource =new EventSource.Builder(eventHandler, URI.create(url)).build();
+
         eventSource.start();
+
+       /* 1.
+        eventSource.start() starts receiving events asynchronously.
+        2.
+        Main runner thread sleeps 10 minutes.
+        3.
+        After sleep ends, run() completes.
+        4.
+        Spring Boot app then shuts down (no code keeps it running indefinitely).*/
 
         TimeUnit.MINUTES.sleep(10);
     }

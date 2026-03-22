@@ -17,6 +17,7 @@ public class SpringBootProducerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+//        CommandLineRunner provide run method there you can write what you want to run when the application starts
         wikimediaChangesProducer.sendMessage();
     }
 }

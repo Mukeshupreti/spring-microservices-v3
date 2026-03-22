@@ -38,11 +38,12 @@
 
 ---
 # PATCH Example - Partial Update of a User
-
+#### instead of map you can create DTO like userRequest better approch
 | HTTP Method | Annotation | URL | Description | Example Method |
 |------------|-----------|-----|------------|----------------|
 | PATCH | `@PatchMapping` + `@RequestBody` | `/users/{id}` | Partially updates a user | 
 ```java
+
 @PatchMapping("/{id}")
 public ResponseEntity<User> patchUser(
 @PathVariable int id,
@@ -301,37 +302,39 @@ spring.security.user.password=admin
 
 ```
 ``` java
-package com.in28minutes.rest.webservices.restfulwebservices.security;
-
-
-import static org.springframework.security.config.Customizer.withDefaults;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-
 @Configuration
-public class SpringSecurityConfiguration {
+@EnableMethodSecurity
+public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  @Bean
+  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-//		1) All requests should be authenticated
-http.authorizeHttpRequests(
-auth -> auth.anyRequest().authenticated()
-);
-//		2) If a request is not authenticated, a web page is shown
-http.httpBasic(withDefaults());
+    http
+      // 1️⃣ Stateless API → no sessions
+      .sessionManagement(sm ->
+        sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS) (// session state maintain by JST 
+      )
 
-//		3) CSRF -> POST, PUT
-// http.csrf().disable(); // Deprecated in SB 3.1.x
-http.csrf(csrf -> csrf.disable()); // // Starting from Spring Boot 3.1.x
+      // 2️⃣ CSRF disabled (JWT + REST)
+      .csrf(csrf -> csrf.disable())  is not required for jWT and we are using JWT (not jseesionid )
 
+      // 3️⃣ Endpoint security
+      .authorizeHttpRequests(auth -> auth
+        .requestMatchers("/public/**").permitAll()
+        .requestMatchers(HttpMethod.GET, "/orders/**").hasAuthority("order:read")
+        .requestMatchers(HttpMethod.POST, "/orders/**").hasAuthority("order:write")
+        .anyRequest().authenticated()
+      )
 
-		return http.build();
-	}
+      // 4️⃣ JWT validation
+      .oauth2ResourceServer(oauth ->
+        oauth.jwt(Customizer.withDefaults())
+      );
 
+    return http.build();
+  }
 }
+
 ```
 
 
@@ -487,4 +490,45 @@ curl -s http://localhost:8080/learn-rest/manage | jq | grep "href"
 	
 
 
+![img.png](img.png)
+
+
+Ultra-Quick Memory Lines
+
+Propagation → Transaction scope
+
+Isolation → Data visibility
+
+Optimistic → Assume no conflict
+
+Pessimistic → Lock early
+
+| Propagation Level      | Quick Explanation              | When to Use (Real-Time)   |
+| ---------------------- | ------------------------------ | ------------------------- |
+| **REQUIRED** (default) | Join existing tx or create new | Normal service logic      |
+| **REQUIRES_NEW**       | Suspend existing, start new tx | Audit logs, notifications |
+| **SUPPORTS**           | Join tx if exists, else no tx  | Read-only methods         |
+| **NOT_SUPPORTED**      | Run without tx                 | Long reports, exports     |
+| **MANDATORY**          | Must run inside tx             | Strict business rules     |
+| **NEVER**              | Must NOT run in tx             | Validation logic          |
+| **NESTED**             | Savepoint inside tx            | Partial rollback          |
+
+| Isolation Level              | Prevents               | Allows               | When to Use       |
+| ---------------------------- | ---------------------- | -------------------- | ----------------- |
+| **READ_UNCOMMITTED**         | Nothing                | Dirty reads          | Almost never      |
+| **READ_COMMITTED** (default) | Dirty reads            | Non-repeatable reads | Most applications |
+| **REPEATABLE_READ**          | Dirty + non-repeatable | Phantom reads        | Reporting         |
+| **SERIALIZABLE**             | All anomalies          | None                 | Financial systems |
+
+
+| Strategy        | How It Works                     | Pros                          | Cons                | Best Use Case            |
+| --------------- | -------------------------------- | ----------------------------- | ------------------- | ------------------------ |
+| **OPTIMISTIC**  | No lock, check version at commit | High performance, no deadlock | Retry needed        | REST APIs, microservices |
+| **PESSIMISTIC** | Lock row immediately             | Strong consistency            | Blocking, deadlocks | Payments, inventory      |
+
+
+| Strategy        | How It Works                     | Pros                          | Cons                | Best Use Case            |
+| --------------- | -------------------------------- | ----------------------------- | ------------------- | ------------------------ |
+| **OPTIMISTIC**  | No lock, check version at commit | High performance, no deadlock | Retry needed        | REST APIs, microservices |
+| **PESSIMISTIC** | Lock row immediately             | Strong consistency            | Blocking, deadlocks | Payments, inventory      |
 

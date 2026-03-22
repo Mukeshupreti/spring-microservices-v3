@@ -31,7 +31,7 @@ public Map<Character, Long> letterCounter(String input) {
 Given a sentence, count how many times each word appears.
 
 ### Solution
-
+### Arrays.stream(String[])
 Split by whitespace, convert to lowercase, group by word, and count.
 
 ### Code
@@ -101,6 +101,10 @@ Convert list of transactions into a map using transaction ID as the key.
 Use `Collectors.toMap()` and provide a merge function for duplicate
 keys.
 
+
+toMap(keyMapper, valueMapper, mergeFunction)
+![img_1.png](img_1.png)
+![img.png](img.png)
 ### Code
 
 ``` java

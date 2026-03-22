@@ -1,7 +1,7 @@
 
 
 # Java Code Review Checklist
-(COEL(code,oop,ExceptionH,Logging) PCS(performance,concurency,secuiry) SAD(spring,api,database), DDTB )
+(COEL(code,oop,ExceptionH,Logging) PCS(performance,concurency,secuiry) SAD(spring,api,database), TDDB (test,Deployment,Documentation,build(pom)) )
 # Topics
 
 1. Code Quality
