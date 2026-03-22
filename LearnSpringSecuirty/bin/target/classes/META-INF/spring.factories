@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.in28minutes.rest.webservices.restfulwebservices.customAutoconfiguration.MyFeatureAutoConfiguration

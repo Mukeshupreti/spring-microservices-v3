@@ -1,0 +1,11 @@
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/query/dto/OrderViewDTO.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/command/OrderCommandService.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/domain/Order.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/event/OrderCreatedEvent.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/event/OrderEventConsumer.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/repository/OrderRepository.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/query/OrderQueryService.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/CqrsApplication.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/api/OrderController.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/config/InfrastructureConfig.java
+/home/mukesh/IdeaProjects/spring-microservices-v3/CQRS_Advanced_Project/src/main/java/com/example/cqrs/command/dto/CreateOrderCommandDTO.java
