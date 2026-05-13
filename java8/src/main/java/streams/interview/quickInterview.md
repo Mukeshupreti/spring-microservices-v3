@@ -1,6 +1,23 @@
 # Java 8 Streams Interview Q&A
 
 ---
+# Performance Benchmark Comparison: Loops vs. Streams
+
+## 📊 Summary Table
+
+
+| Operation Type | Traditional Loop | Java 8 Stream | Winner |
+| :--- | :--- | :--- | :--- |
+| **Small Lists (< 1,000 items)** | Extremely Fast (~nanoseconds) | Slightly Slower (Pipeline setup cost) | **Traditional** |
+| **Huge Lists (> 1,000,000 items)** | Consistently Fast | Noticeably Slower | **Traditional** |
+| **Complex CPU Calculations** | Fast (Single-thread bound) | Multi-core ready via `.parallelStream()` | **Stream (Parallel)** |
+
+---
+
+## ⚡ Key Takeaways
+
+* **Infrastructure & High Performance:** Use **Traditional Loops** if you are processing massive datasets sequentially or working in memory-constrained environments where object allocation overhead must be zero.
+* **Standard Business Logic:** Use **Java 8 Streams** for everyday operations (like DTO mapping or small list filtering). The tiny nanosecond performance trade-off is well worth the massive gain in readability and maintainability.
 
 ## Core Concept Questions
 

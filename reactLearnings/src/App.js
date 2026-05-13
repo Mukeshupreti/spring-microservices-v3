@@ -52,7 +52,7 @@ class App extends Component {
         {/* <C2></C2> */}
         {/* <C3></C3> */}
         {/* <C4></C4> */}
-        <C5></C5>
+        {/* <C5></C5> */}
         {/* <C6></C6> */}
         {/* <C8></C8> */}
           {/* without combined  */}
@@ -73,7 +73,7 @@ class App extends Component {
           <C11></C11>
         </Provider> */}
 
-        {/* <C12></C12> */}
+        <C12></C12>
          {/* <C13></C13> */}
 
         {/* <Parent></Parent> */}

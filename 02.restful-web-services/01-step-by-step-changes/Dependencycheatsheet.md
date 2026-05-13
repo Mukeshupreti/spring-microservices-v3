@@ -2,12 +2,12 @@
 
 ## org.springframework.boot
 - spring-boot-starter-web
-- spring-boot-starter-data-jpa
 - spring-boot-starter-security
+- spring-boot-starter-validation
+- spring-boot-starter-data-jpa
+- spring-boot-starter-aop
 - spring-boot-starter-actuator
 - spring-boot-starter-test
-- spring-boot-starter-aop
-- spring-boot-starter-validation
 - spring-boot-starter-hateoas
 - spring-boot-devtools
 
@@ -24,15 +24,15 @@
 
 # Spring @RestController Quick Reference (with Annotations)
 
-| HTTP Method | Annotation | Endpoint / Parameter | Description | Example |
-|------------|------------|-------------------|-------------|---------|
-| GET        | `@GetMapping` | `/users` | Retrieve all users | `@GetMapping public List<User> getAllUsers()` |
-| GET        | `@GetMapping` + `@PathVariable` | `/users/{id}` | Retrieve user by ID | `@GetMapping("/{id}") public User getUser(@PathVariable int id)` |
-| GET        | `@GetMapping` + `@RequestParam` | `/users?role=admin` | Retrieve filtered users | `@GetMapping public List<User> getUsersByRole(@RequestParam String role)` |
-| POST       | `@PostMapping` + `@RequestBody` | `/users` | Create a new user | `@PostMapping public ResponseEntity<Void> createUser(@RequestBody @Valid User user)` |
-| PUT        | `@PutMapping` + `@RequestBody` | `/users/{id}` | Full update of a user | `@PutMapping("/{id}") public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody @Valid User user)` |
-| PATCH      | `@PatchMapping` + `@RequestBody` | `/users/{id}` | Partial update of a user | `@PatchMapping("/{id}") public ResponseEntity<User> patchUser(@PathVariable int id, @RequestBody Map<String,Object> updates)` |
-| DELETE     | `@DeleteMapping` + `@PathVariable` | `/users/{id}` | Delete a user | `@DeleteMapping("/{id}") public ResponseEntity<Void> deleteUser(@PathVariable int id)` |
+| HTTP Method                           | Annotation | Endpoint / Parameter | Description | Example |
+|---------------------------------------|------------|-------------------|-------------|---------|
+| GET                                   | `@GetMapping` | `/users` | Retrieve all users | `@GetMapping public List<User> getAllUsers()` |
+| GET  (path variable)                  | `@GetMapping` + `@PathVariable` | `/users/{id}` | Retrieve user by ID | `@GetMapping("/{id}") public User getUser(@PathVariable int id)` |
+| GET  (request parameter)              | `@GetMapping` + `@RequestParam` | `/users?role=admin` | Retrieve filtered users | `@GetMapping public List<User> getUsersByRole(@RequestParam String role)` |
+| POST      (request body)              | `@PostMapping` + `@RequestBody` | `/users` | Create a new user | `@PostMapping public ResponseEntity<Void> createUser(@RequestBody @Valid User user)` |
+| PUT  (full)    (pathvariable)         | `@PutMapping` + `@RequestBody` | `/users/{id}` | Full update of a user | `@PutMapping("/{id}") public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody @Valid User user)` |
+| PATCH (pathvariable)(partial update/partial delete) | `@PatchMapping` + `@RequestBody` | `/users/{id}` | Partial update of a user | `@PatchMapping("/{id}") public ResponseEntity<User> patchUser(@PathVariable int id, @RequestBody Map<String,Object> updates)` |
+| DELETE  (full delete)                 | `@DeleteMapping` + `@PathVariable` | `/users/{id}` | Delete a user | `@DeleteMapping("/{id}") public ResponseEntity<Void> deleteUser(@PathVariable int id)` |
 
 
 
@@ -70,20 +70,20 @@ public ResponseEntity<User> patchUser(
 
 # Spring Boot Exception Handling Cheat Sheet
 
-| Technique / Annotation | Purpose | Example |
-|------------------------|---------|---------|
-| `@ResponseStatus` | Set HTTP status on exception | `@ResponseStatus(HttpStatus.NOT_FOUND) public class UserNotFoundException extends RuntimeException {}` |
-| `@ExceptionHandler` | Handle specific exceptions in a controller or globally | `@ExceptionHandler(UserNotFoundException.class) public ResponseEntity<ErrorDetails> handleUserNotFound(UserNotFoundException ex, WebRequest req)` |
-| `@ControllerAdvice` | Global exception handler for MVC controllers | `@ControllerAdvice public class GlobalExceptionHandler { ... }` |
-| `@RestControllerAdvice` | Global exception handler for REST controllers | `@RestControllerAdvice public class GlobalExceptionHandler { ... }` |
-| `ResponseEntity` | Customize response body, status, and headers | `return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);` |
-| `WebRequest` | Access request details inside exception handler | `handleAllExceptions(Exception ex, WebRequest request)` |
+| Technique / Annotation | Purpose                                                             | Example |
+|------------------------|---------------------------------------------------------------------|---------|
+| `@ResponseStatus` | Set HTTP status on exception                                        | `@ResponseStatus(HttpStatus.NOT_FOUND) public class UserNotFoundException extends RuntimeException {}` |
+| `@ExceptionHandler` | Handle specific exceptions in a controller or globally              | `@ExceptionHandler(UserNotFoundException.class) public ResponseEntity<ErrorDetails> handleUserNotFound(UserNotFoundException ex, WebRequest req)` |
+| `@ControllerAdvice` | Global exception handler for MVC controllers                        | `@ControllerAdvice public class GlobalExceptionHandler { ... }` |
+| `@RestControllerAdvice` | Global exception handler for REST controllers                       | `@RestControllerAdvice public class GlobalExceptionHandler { ... }` |
+| `ResponseEntity` | Customize response body, status, and headers                        | `return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);` |
+| `WebRequest` | Access request details inside exception handler                     | `handleAllExceptions(Exception ex, WebRequest request)` |
 | `@Valid` | Trigger Bean Validation and catch `MethodArgumentNotValidException` | `public ResponseEntity<Void> createUser(@RequestBody @Valid User user)` |
-| `MethodArgumentNotValidException` | Handles validation errors automatically | `@ExceptionHandler(MethodArgumentNotValidException.class)` |
-| `ConstraintViolationException` | Handle validation errors on request parameters | `@ExceptionHandler(ConstraintViolationException.class)` |
-| `NoHandlerFoundException` | Handle 404 errors when no endpoint matches | `@ExceptionHandler(NoHandlerFoundException.class)` |
-| `HttpRequestMethodNotSupportedException` | Handle 405 Method Not Allowed | `@ExceptionHandler(HttpRequestMethodNotSupportedException.class)` |
-| `HttpMessageNotReadableException` | Handle invalid JSON or deserialization errors | `@ExceptionHandler(HttpMessageNotReadableException.class)` |
+| `MethodArgumentNotValidException` | Handles validation errors automatically on DTO (eg: User)           | `@ExceptionHandler(MethodArgumentNotValidException.class)` |
+| `ConstraintViolationException` | Handle validation errors on request parameters/path variable        | `@ExceptionHandler(ConstraintViolationException.class)` |
+| `NoHandlerFoundException` | Handle 404 errors when no endpoint matches                          | `@ExceptionHandler(NoHandlerFoundException.class)` |
+| `HttpRequestMethodNotSupportedException` | Handle 405 Method Not Allowed                                       | `@ExceptionHandler(HttpRequestMethodNotSupportedException.class)` |
+| `HttpMessageNotReadableException` | Handle invalid JSON or deserialization errors                       | `@ExceptionHandler(HttpMessageNotReadableException.class)` |
 
 ---
 
@@ -128,6 +128,65 @@ public class GlobalExceptionHandler {
 | **Header Versioning** | URL: `http://localhost:8080/person/header`<br>Header: `X-API-VERSION:1`<br>`@GetMapping(path="/person/header", headers="X-API-VERSION=1") public PersonV1 getPersonV1()` | URL: `http://localhost:8080/person/header`<br>Header: `X-API-VERSION:2`<br>`@GetMapping(path="/person/header", headers="X-API-VERSION=2") public PersonV2 getPersonV2()` |
 | **Content Negotiation** | URL: `http://localhost:8080/person/accept`<br>Header: `Accept:application/vnd.company.app-v1+json`<br>`@GetMapping(path="/person/accept", produces="application/vnd.company.app-v1+json") public PersonV1 getPersonV1()` | URL: `http://localhost:8080/person/accept`<br>Header: `Accept:application/vnd.company.app-v2+json`<br>`@GetMapping(path="/person/accept", produces="application/vnd.company.app-v2+json") public PersonV2 getPersonV2()` |
 
+## 💡 Quick Summary
+Do not use `@RequestParam` or `@RequestHeader` for API versioning. Use the `params` or `headers` attributes inside `@GetMapping` to let Spring handle method routing cleanly.
+
+---
+
+## 🎯 The Fundamental Difference
+
+### 1. `@GetMapping(params = ...)` or `(headers = ...)`
+* **Purpose:** **Routing (Request Mapping)**
+* **What it does:** It tells Spring *which specific controller method* must handle the incoming HTTP request.
+* **Best Used For:** API Versioning or choosing completely different business logic paths based on parameters/headers.
+
+### 2. `@RequestParam` or `@RequestHeader`
+* **Purpose:** **Data Binding**
+* **What it does:** It runs *after* Spring selects the method. It extracts values directly from the request and injects them into Java variables.
+* **Best Used For:** Dynamic business values like pagination variables (`?page=2`), filtering attributes (`?status=active`), or security tokens.
+
+# API Versioning: Architectural Comparison
+
+
+| Strategy | URL Readability | Cache Friendly | Documentation (Swagger)           |
+| :--- | :--- | :--- |:----------------------------------|
+| **URI Path** | Excellent | Yes | Out-of-the-box support (build in) |
+| **Request Param** | Good | Yes | Good support                      |
+| **Custom Header** | Poor (Hidden) | No (Requires `Vary`) | Requires extra configuration      |
+| **Media Type** | Poor (Hidden) | No (Requires `Vary`) | Requires extra configuration      |
+
+
+# Quick Note: Why Header Versioning Requires HTTP `Vary`
+
+## 💡 The Problem
+If Version 1 and Version 2 share the **exact same URL** (`GET /api/users`), network caches (browsers, CDNs) get confused.
+
+If Client A requests Version 1 using a header, the cache saves it under the URL path. When Client B asks for Version 2 at that same URL, the cache blindly serves them the cached Version 1 data.
+
+---
+
+## 🛠️ The Solution: `Vary` Header
+The `Vary` header forces caches to use both the **URL** AND the **Header Value** to create a unique cache key.
+
+### Spring Boot Implementation
+```java
+@GetMapping(headers = "X-API-VERSION=2")
+public ResponseEntity<UserDtoV2> getUsersV2() {
+    return ResponseEntity.ok()
+            .header(HttpHeaders.VARY, "X-API-VERSION") // Fixes caching bug
+            .body(new UserDtoV2());
+}
+```
+
+### Resulting Cache Keys
+* `/api/users` + `X-API-VERSION: 1`
+* `/api/users` + `X-API-VERSION: 2`
+
+---
+
+## 📋 Summary Rule
+* **URI Path (`/api/v1/users`):** Caching works perfectly automatically. No `Vary` needed.
+* **Header/Media Type (`/api/users`):** Strictly **requires** `Vary` to prevent data corruption bugs.
 
 package com.in28minutes.rest.webservices.restfulwebservices.versioning;
 
@@ -202,7 +261,7 @@ Content negotiation → most RESTful, supports formats, but adds complexity.
 
 
 # Internationalized Hello World - Quick Reference
-
+(local,messagersource.getMessage(key,local) ,accept-language…·   ),
 | HTTP Method | URL | Header | Controller Snippet | Example Response |
 |------------|-----|--------|------------------|----------------|
 | GET | `http://localhost:8080/hello-world-internationalized` | `Accept-Language: nl` | 
@@ -262,6 +321,24 @@ logging.level.org.springframework=info
 
 --MDC (from org.slf4j.MDC) in filter we put user id (userID) to show in logger
 logging.pattern.level=%5p [${spring.application.name:},%X{userID:-} %X{traceId:-},%X{spanId:-}]
+
+MDC (Mapped Diagnostic Context) is a powerful feature provided by logging frameworks (like SLF4J, Logback, and Log4j2)
+ that allows you to enrich your application log statements with contextual key-value pairs.Internally, 
+MDC relies on ThreadLocal storage. This means any context data you put into MDC stays attached to 
+the executing thread. Every log statement fired by that thread will automatically print those
+ contextual fields without you needing to manually pass variables into your log.info() methods.
+``` java
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j // ✅ Automatically injects a variable named 'log' at compile time
+public class MyService {
+public void doWork() {
+log.debug("Lombok generated this logger instance dynamically.");
+}
+}
 ```
 ### application
 ```
@@ -339,8 +416,8 @@ public class SecurityConfig {
 
 
 
-	//Accept (response body): application/xml  :Tells the server the format the client expects in the response.
-	//Content-Type  (request body): application/xml :Tells the server the format of the data being sent in the HTTP request body.
+	//Accept (response body): (produces) application/xml  :Tells the server the format the client expects in the response.
+	//Content-Type (consume) (request body): application/xml :Tells the server the format of the data being sent in the HTTP request body.
 
 
 # ResponseEntity Quick Reference
@@ -389,6 +466,32 @@ public class SecurityConfig {
 
 > **Tip:** For **generic responses like `List<User>`**, always use `exchange()` with `ParameterizedTypeReference<T>` because `getForObject` cannot handle generic types properly.  
 > For new projects, consider **`WebClient`** instead of `RestTemplate` for reactive and non-blocking calls.
+>
+### WebClient vs. RestTemplate: Core Architectural Summary
+```java
+ResponseEntity<List<User>> response = restTemplate.exchange(
+    "http://localhost:8080/users/{role}?status={status}", // 1. url (String)
+    HttpMethod.GET,                                       // 2. method (HttpMethod)
+    null,                                                 // 3. requestEntity (HttpEntity)
+    new ParameterizedTypeReference<List<User>>(){},       // 4. responseType (ParameterizedTypeReference)
+    "admin",                                              // 5. uriVariables (Object varargs - maps to {role})
+    "active"                                              // 6. uriVariables (Object varargs - maps to {status})
+);
+
+List<User> users = response.getBody();
+```
+
+---
+| Feature | RestTemplate | WebClient |
+| :--- | :--- | :--- |
+| **Architecture Style** | Synchronous / Blocking | Asynchronous / Non-blocking / Reactive |
+| **Threading Model** | One thread per request (Locks thread until done) | Event-loop model (Frees thread while waiting) |
+| **Spring Stack** | Spring Web (Traditional Servlet MVC) | Spring WebFlux (Modern Reactive Framework) |
+| **Ecosystem Status** | **Maintenance Mode** (Legacy compatibility only) | **Active Development** (Spring's recommended standard) |
+| **Resource Efficiency** | Low under high load (High memory/thread usage) | High under high load (Low memory footprint) |
+| **Streaming Support** | No (Loads complete payload into memory) | Yes (Supports Server-Sent Events / `Flux` streaming) |
+| **Execution Options** | Strictly blocking calls | Supports both non-blocking pipelines and `.block()` calls |
+
 
 # Bean Validation Annotations Cheat Sheet
 

@@ -55,6 +55,18 @@ public class OptionExplore {
                 T orElseThrow()                     // Throws NoSuchElementException if not present
         T orElseThrow(Supplier<? extends X> exceptionSupplier) // Custom exception*/
 
+        optional.ifPresentOrElse(
+                value-> System.out.println("value is present "+value),
+                ()-> System.out.println("value is not present")
+
+        );
+         optional = Optional.ofNullable(null);
+        optional.ifPresentOrElse(
+                value-> System.out.println("value is present "+value),
+                ()-> System.out.println("value is not present")
+
+        );
+
         String value= String.valueOf(optional.orElse(null));
         System.out.println(value);
     }
